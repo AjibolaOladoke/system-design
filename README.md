@@ -1,103 +1,12 @@
-# System Design
+# system-design
+
+## What This Is
+
+We keep a working index for product and engineering, and system-design is the entry that collects our notes, examples and fixes. It reflects how Swift Tech Co. actually uses this in builds and client work.
 
 ## Images
 
-[![system-design](https://opengraph.githubassets.com/1/karanpratapsingh/system-design)](https://www.swifttechco.com)
-
-
-Hey, welcome to the course. I hope this course provides a great learning experience.
-
-_This course is also available on my [website](https://www.swifttechco.com) and as an ebook on [leanpub](https://www.swifttechco.com). Please leave a ⭐ as motivation if this was helpful!_
-
-# Table of contents
-
-- **Getting Started**
-
-  - [What is system design?](#what-is-system-design)
-
-- **Chapter I**
-
-  - [IP](#ip)
-  - [OSI Model](#osi-model)
-  - [TCP and UDP](#tcp-and-udp)
-  - [Domain Name System (DNS)](#domain-name-system-dns)
-  - [Load Balancing](#load-balancing)
-  - [Clustering](#clustering)
-  - [Caching](#caching)
-  - [Content Delivery Network (CDN)](#content-delivery-network-cdn)
-  - [Proxy](#proxy)
-  - [Availability](#availability)
-  - [Scalability](#scalability)
-  - [Storage](#storage)
-
-- **Chapter II**
-
-  - [Databases and DBMS](#databases-and-dbms)
-  - [SQL databases](#sql-databases)
-  - [NoSQL databases](#nosql-databases)
-  - [SQL vs NoSQL databases](#sql-vs-nosql-databases)
-  - [Database Replication](#database-replication)
-  - [Indexes](#indexes)
-  - [Normalization and Denormalization](#normalization-and-denormalization)
-  - [ACID and BASE consistency models](#acid-and-base-consistency-models)
-  - [CAP theorem](#cap-theorem)
-  - [PACELC Theorem](#pacelc-theorem)
-  - [Transactions](#transactions)
-  - [Distributed Transactions](#distributed-transactions)
-  - [Sharding](#sharding)
-  - [Consistent Hashing](#consistent-hashing)
-  - [Database Federation](#database-federation)
-
-- **Chapter III**
-
-  - [N-tier architecture](#n-tier-architecture)
-  - [Message Brokers](#message-brokers)
-  - [Message Queues](#message-queues)
-  - [Publish-Subscribe](#publish-subscribe)
-  - [Enterprise Service Bus (ESB)](#enterprise-service-bus-esb)
-  - [Monoliths and Microservices](#monoliths-and-microservices)
-  - [Event-Driven Architecture (EDA)](#event-driven-architecture-eda)
-  - [Event Sourcing](#event-sourcing)
-  - [Command and Query Responsibility Segregation (CQRS)](#command-and-query-responsibility-segregation-cqrs)
-  - [API Gateway](#api-gateway)
-  - [REST, GraphQL, gRPC](#rest-graphql-grpc)
-  - [Long polling, WebSockets, Server-Sent Events (SSE)](#long-polling-websockets-server-sent-events-sse)
-
-- **Chapter IV**
-
-  - [Geohashing and Quadtrees](#geohashing-and-quadtrees)
-  - [Circuit breaker](#circuit-breaker)
-  - [Rate Limiting](#rate-limiting)
-  - [Service Discovery](#service-discovery)
-  - [SLA, SLO, SLI](#sla-slo-sli)
-  - [Disaster recovery](#disaster-recovery)
-  - [Virtual Machines (VMs) and Containers](#virtual-machines-vms-and-containers)
-  - [OAuth 2.0 and OpenID Connect (OIDC)](#oauth-20-and-openid-connect-oidc)
-  - [Single Sign-On (SSO)](#single-sign-on-sso)
-  - [SSL, TLS, mTLS](#ssl-tls-mtls)
-
-- **Chapter V**
-
-  - [System Design Interviews](#system-design-interviews)
-  - [URL Shortener](#url-shortener)
-  - [WhatsApp](#whatsapp)
-  - [Netflix](#netflix)
-  - [Uber](#uber)
-
-- **Appendix**
-
-  - [Next Steps](#next-steps)
-  - [References](#references)
-
-# What is system design?
-
-Before we start this course, let's talk about what even is system design.
-
-System design is the process of defining the architecture, interfaces, and data
-for a system that satisfies specific requirements. System design meets the needs
-of your business or organization through coherent and efficient systems. It requires
-a systematic approach to building and engineering systems. A good system design requires
-us to think about everything, from infrastructure all the way down to the data and how it's stored.
+[![system-design](images/preview.png)](https://github.com/Swift-Tech-Co)
 
 ## Why is System Design so important?
 
@@ -154,7 +63,7 @@ _Example: They are usually used for important things like reliable geo-location 
 
 ### Dynamic
 
-A dynamic IP address changes from time to time and is not always the same. It has been assigned by a [Dynamic Host Configuration Protocol (DHCP)](https://www.swifttechco.com) server. Dynamic IP addresses are the most common type of internet protocol address. They are cheaper to deploy and allow us to reuse IP addresses within a network as needed.
+A dynamic IP address changes from time to time and is not always the same. It has been assigned by a Dynamic Host Configuration Protocol (DHCP) server. Dynamic IP addresses are the most common type of internet protocol address. They are cheaper to deploy and allow us to reuse IP addresses within a network as needed.
 
 _Example: They are more commonly used for consumer equipment and personal use._
 
@@ -254,13 +163,13 @@ This brings us to Domain Name System (DNS) which is a hierarchical and decentral
 
 DNS lookup involves the following eight steps:
 
-1. A client types [example.com](https://www.swifttechco.com) into a web browser, the query travels to the internet and is received by a DNS resolver.
+1. A client types example.com into a web browser, the query travels to the internet and is received by a DNS resolver.
 2. The resolver then recursively queries a DNS root nameserver.
 3. The root server responds to the resolver with the address of a Top-Level Domain (TLD).
 4. The resolver then makes a request to the `.com` TLD.
-5. The TLD server then responds with the IP address of the domain's nameserver, [example.com](https://www.swifttechco.com).
+5. The TLD server then responds with the IP address of the domain's nameserver, example.com.
 6. Lastly, the recursive resolver sends a query to the domain's nameserver.
-7. The IP address for [example.com](https://www.swifttechco.com) is then returned to the resolver from the nameserver.
+7. The IP address for example.com is then returned to the resolver from the nameserver.
 8. The DNS resolver then responds to the web browser with the IP address of the domain requested initially.
 
 Once the IP address has been resolved, the client should be able to request content from the resolved IP address. For example, the resolved IP may return a webpage to be rendered in the browser.
@@ -275,22 +184,22 @@ A DNS resolver (also known as a DNS recursive resolver) is the first stop in a D
 
 ### DNS root server
 
-A root server accepts a recursive resolver's query which includes a domain name, and the root nameserver responds by directing the recursive resolver to a TLD nameserver, based on the extension of that domain (`.com`, `.net`, `.org`, etc.). The root nameservers are overseen by a nonprofit called the [Internet Corporation for Assigned Names and Numbers (ICANN)](https://www.swifttechco.com).
+A root server accepts a recursive resolver's query which includes a domain name, and the root nameserver responds by directing the recursive resolver to a TLD nameserver, based on the extension of that domain (`.com`, `.net`, `.org`, etc.). The root nameservers are overseen by a nonprofit called the Internet Corporation for Assigned Names and Numbers (ICANN).
 
-There are 13 DNS root nameservers known to every recursive resolver. Note that while there are 13 root nameservers, that doesn't mean that there are only 13 machines in the root nameserver system. There are 13 types of root nameservers, but there are multiple copies of each one all over the world, which use [Anycast routing](https://www.swifttechco.com) to provide speedy responses.
+There are 13 DNS root nameservers known to every recursive resolver. Note that while there are 13 root nameservers, that doesn't mean that there are only 13 machines in the root nameserver system. There are 13 types of root nameservers, but there are multiple copies of each one all over the world, which use Anycast routing to provide speedy responses.
 
 ### TLD nameserver
 
 A TLD nameserver maintains information for all the domain names that share a common domain extension, such as `.com`, `.net`, or whatever comes after the last dot in a URL.
 
-Management of TLD nameservers is handled by the [Internet Assigned Numbers Authority (IANA)](https://www.swifttechco.com), which is a branch of [ICANN](https://www.swifttechco.com). The IANA breaks up the TLD servers into two main groups:
+Management of TLD nameservers is handled by the Internet Assigned Numbers Authority (IANA), which is a branch of ICANN. The IANA breaks up the TLD servers into two main groups:
 
 - **Generic top-level domains**: These are domains like `.com`, `.org`, `.net`, `.edu`, and `.gov`.
 - **Country code top-level domains**: These include any domains that are specific to a country or state. Examples include `.uk`, `.us`, `.ru`, and `.jp`.
 
 ### Authoritative DNS server
 
-The authoritative nameserver is usually the resolver's last step in the journey for an IP address. The authoritative nameserver contains information specific to the domain name it serves (e.g. [google.com](https://www.swifttechco.com)) and it can provide a recursive resolver with the IP address of that server found in the DNS A record, or if the domain has a CNAME record (alias) it will provide the recursive resolver with an alias domain, at which point the recursive resolver will have to perform a whole new DNS lookup to procure a record from an authoritative nameserver (often an A record containing an IP address). If it cannot find the domain, returns the NXDOMAIN message.
+The authoritative nameserver is usually the resolver's last step in the journey for an IP address. The authoritative nameserver contains information specific to the domain name it serves (e.g. google.com) and it can provide a recursive resolver with the IP address of that server found in the DNS A record, or if the domain has a CNAME record (alias) it will provide the recursive resolver with an alias domain, at which point the recursive resolver will have to perform a whole new DNS lookup to procure a record from an authoritative nameserver (often an A record containing an IP address). If it cannot find the domain, returns the NXDOMAIN message.
 
 ## Query Types
 
@@ -354,11 +263,11 @@ _Note: Reverse DNS lookups are not universally adopted as they are not critical 
 
 These are some widely used managed DNS solutions:
 
-- [Route53](https://www.swifttechco.com)
-- [Cloudflare DNS](https://www.swifttechco.com)
-- [Google Cloud DNS](https://www.swifttechco.com)
-- [Azure DNS](https://www.swifttechco.com)
-- [NS1](https://www.swifttechco.com)
+- Route53
+- Cloudflare DNS
+- Google Cloud DNS
+- Azure DNS
+- NS1
 
 # Load Balancing
 
@@ -467,12 +376,12 @@ Here are some commonly desired features of load balancers:
 
 Following are some of the load balancing solutions commonly used in the industry:
 
-- [Amazon Elastic Load Balancing](https://www.swifttechco.com)
-- [Azure Load Balancing](https://www.swifttechco.com)
-- [GCP Load Balancing](https://www.swifttechco.com)
-- [DigitalOcean Load Balancer](https://www.swifttechco.com)
-- [Nginx](https://www.swifttechco.com)
-- [HAProxy](https://www.swifttechco.com)
+- Amazon Elastic Load Balancing
+- Azure Load Balancing
+- GCP Load Balancing
+- DigitalOcean Load Balancer
+- Nginx
+- HAProxy
 
 # Clustering
 
@@ -537,9 +446,9 @@ Additionally, storage becomes more difficult to manage, a shared storage device 
 
 Clustering is commonly used in the industry, and often many technologies offer some sort of clustering mode. For example:
 
-- Containers (e.g. [Kubernetes](https://www.swifttechco.com), [Amazon ECS](https://www.swifttechco.com))
-- Databases (e.g. [Cassandra](https://www.swifttechco.com), [MongoDB](https://www.swifttechco.com))
-- Cache (e.g. [Redis](https://www.swifttechco.com))
+- Containers (e.g. Kubernetes, Amazon ECS)
+- Databases (e.g. Cassandra, MongoDB)
+- Cache (e.g. Redis)
 
 # Caching
 
@@ -669,10 +578,10 @@ Below are some advantages of caching:
 
 Here are some commonly used technologies for caching:
 
-- [Redis](https://www.swifttechco.com)
-- [Memcached](https://www.swifttechco.com)
-- [Amazon Elasticache](https://www.swifttechco.com)
-- [Aerospike](https://www.swifttechco.com)
+- Redis
+- Memcached
+- Amazon Elasticache
+- Aerospike
 
 # Content Delivery Network (CDN)
 
@@ -724,10 +633,10 @@ As we all know good things come with extra costs, so let's discuss some disadvan
 
 Here are some widely used CDNs:
 
-- [Amazon CloudFront](https://www.swifttechco.com)
-- [Google Cloud CDN](https://www.swifttechco.com)
-- [Cloudflare CDN](https://www.swifttechco.com)
-- [Fastly](https://www.swifttechco.com)
+- Amazon CloudFront
+- Google Cloud CDN
+- Cloudflare CDN
+- Fastly
 
 # Proxy
 
@@ -748,7 +657,7 @@ A forward proxy, often called a proxy, proxy server, or web proxy is a server th
 Here are some advantages of a forward proxy:
 
 - Block access to certain content
-- Allows access to [geo-restricted](https://www.swifttechco.com) content
+- Allows access to geo-restricted content
 - Provides anonymity
 - Avoid other browsing restrictions
 
@@ -782,10 +691,10 @@ Wait, isn't reverse proxy similar to a load balancer? Well, no as a load balance
 
 Below are some commonly used proxy technologies:
 
-- [Nginx](https://www.swifttechco.com)
-- [HAProxy](https://www.swifttechco.com)
-- [Traefik](https://www.swifttechco.com)
-- [Envoy](https://www.swifttechco.com)
+- Nginx
+- HAProxy
+- Traefik
+- Envoy
 
 # Availability
 
@@ -926,7 +835,7 @@ Volume is a fixed amount of storage on a disk or tape. The term volume is often 
 
 File storage is a solution to store data as files and present it to its final users as a hierarchical directories structure. The main advantage is to provide a user-friendly solution to store and retrieve files. To locate a file in file storage, the complete path of the file is required. It is economical and easily structured and is usually found on hard drives, which means that they appear exactly the same for the user and on the hard drive.
 
-Example: [Amazon EFS](https://www.swifttechco.com), [Azure files](https://www.swifttechco.com), [Google Cloud Filestore](https://www.swifttechco.com), etc.
+Example: Amazon EFS, Azure files, Google Cloud Filestore, etc.
 
 ## Block storage
 
@@ -934,13 +843,13 @@ Block storage divides data into blocks (chunks) and stores them as separate piec
 
 Block storage also decouples data from user environments, allowing that data to be spread across multiple environments. This creates multiple paths to the data and allows the user to retrieve it quickly. When a user or application requests data from a block storage system, the underlying storage system reassembles the data blocks and presents the data to the user or application
 
-Example: [Amazon EBS](https://www.swifttechco.com).
+Example: Amazon EBS.
 
 ## Object Storage
 
 Object storage, which is also known as object-based storage, breaks data files up into pieces called objects. It then stores those objects in a single repository, which can be spread out across multiple networked systems.
 
-Example: [Amazon S3](https://www.swifttechco.com), [Azure Blob Storage](https://www.swifttechco.com), [Google Cloud Storage](https://www.swifttechco.com), etc.
+Example: Amazon S3, Azure Blob Storage, Google Cloud Storage, etc.
 
 ## NAS
 
@@ -988,8 +897,8 @@ Data in a table is recorded in rows. There can be thousands or millions of rows 
 
 Below are different types of databases:
 
-- **[SQL](https://www.swifttechco.com)**
-- **[NoSQL](https://www.swifttechco.com)**
+- **SQL**
+- **NoSQL**
   - Document
   - Key-value
   - Graph
@@ -997,7 +906,7 @@ Below are different types of databases:
   - Wide column
   - Multi-model
 
-SQL and NoSQL databases are broad topics and will be discussed separately in [SQL databases](https://www.swifttechco.com) and [NoSQL databases](https://www.swifttechco.com). Learn how they compare to each other in [SQL vs NoSQL databases](https://www.swifttechco.com).
+SQL and NoSQL databases are broad topics and will be discussed separately in SQL databases and NoSQL databases. Learn how they compare to each other in SQL vs NoSQL databases.
 
 ## Challenges
 
@@ -1014,7 +923,7 @@ Some common challenges faced while running databases at scale:
 
 A SQL (or relational) database is a collection of data items with pre-defined relationships between them. These items are organized as a set of tables with columns and rows. Tables are used to hold information about the objects to be represented in the database. Each column in a table holds a certain kind of data and a field stores the actual value of an attribute. The rows in the table represent a collection of related values of one object or entity.
 
-Each row in a table could be marked with a unique identifier called a primary key, and rows among multiple tables can be made related using foreign keys. This data can be accessed in many different ways without re-organizing the database tables themselves. SQL databases usually follow the [ACID consistency model](https://www.swifttechco.com).
+Each row in a table could be marked with a unique identifier called a primary key, and rows among multiple tables can be made related using foreign keys. This data can be accessed in many different ways without re-organizing the database tables themselves. SQL databases usually follow the ACID consistency model.
 
 ## Materialized views
 
@@ -1050,14 +959,14 @@ Below are the disadvantages of relational databases:
 
 Here are some commonly used relational databases:
 
-- [PostgreSQL](https://www.swifttechco.com)
-- [MySQL](https://www.swifttechco.com)
-- [MariaDB](https://www.swifttechco.com)
-- [Amazon Aurora](https://www.swifttechco.com)
+- PostgreSQL
+- MySQL
+- MariaDB
+- Amazon Aurora
 
 # NoSQL databases
 
-NoSQL is a broad category that includes any database that doesn't use SQL as its primary data access language. These types of databases are also sometimes referred to as non-relational databases. Unlike in relational databases, data in a NoSQL database doesn't have to conform to a pre-defined schema. NoSQL databases follow [BASE consistency model](https://www.swifttechco.com).
+NoSQL is a broad category that includes any database that doesn't use SQL as its primary data access language. These types of databases are also sometimes referred to as non-relational databases. Unlike in relational databases, data in a NoSQL database doesn't have to conform to a pre-defined schema. NoSQL databases follow BASE consistency model.
 
 Below are different types of NoSQL databases:
 
@@ -1078,9 +987,9 @@ A document database (also known as a document-oriented database or a document st
 
 **Examples**
 
-- [MongoDB](https://www.swifttechco.com)
-- [Amazon DocumentDB](https://www.swifttechco.com)
-- [CouchDB](https://www.swifttechco.com)
+- MongoDB
+- Amazon DocumentDB
+- CouchDB
 
 ### Key-value
 
@@ -1102,10 +1011,10 @@ One of the simplest types of NoSQL databases, key-value databases save data as a
 
 **Examples**
 
-- [Redis](https://www.swifttechco.com)
-- [Memcached](https://www.swifttechco.com)
-- [Amazon DynamoDB](https://www.swifttechco.com)
-- [Aerospike](https://www.swifttechco.com)
+- Redis
+- Memcached
+- Amazon DynamoDB
+- Aerospike
 
 ### Graph
 
@@ -1133,10 +1042,10 @@ The graph relates the data items in the store to a collection of nodes and edges
 
 **Examples**
 
-- [Neo4j](https://www.swifttechco.com)
-- [ArangoDB](https://www.swifttechco.com)
-- [Amazon Neptune](https://www.swifttechco.com)
-- [JanusGraph](https://www.swifttechco.com)
+- Neo4j
+- ArangoDB
+- Amazon Neptune
+- JanusGraph
 
 ### Time series
 
@@ -1156,8 +1065,8 @@ A time-series database is a database optimized for time-stamped, or time series,
 
 **Examples**
 
-- [InfluxDB](https://www.swifttechco.com)
-- [Apache Druid](https://www.swifttechco.com)
+- InfluxDB
+- Apache Druid
 
 ### Wide column
 
@@ -1180,9 +1089,9 @@ Wide column databases, also known as wide column stores, are schema-agnostic. Da
 
 **Examples**
 
-- [BigTable](https://www.swifttechco.com)
-- [Apache Cassandra](https://www.swifttechco.com)
-- [ScyllaDB](https://www.swifttechco.com)
+- BigTable
+- Apache Cassandra
+- ScyllaDB
 
 ### Multi-model
 
@@ -1201,9 +1110,9 @@ Multi-model databases combine different database models (i.e. relational, graph,
 
 **Examples**
 
-- [ArangoDB](https://www.swifttechco.com)
-- [Azure Cosmos DB](https://www.swifttechco.com)
-- [Couchbase](https://www.swifttechco.com)
+- ArangoDB
+- Azure Cosmos DB
+- Couchbase
 
 # SQL vs NoSQL databases
 
@@ -1440,7 +1349,7 @@ For a table to be in the Boyce-Codd normal form (BCNF), it should follow the fol
 - Satisfies the third normal form (3NF).
 - For every functional dependency X → Y, X should be the super key.
 
-_There are more normal forms such as 4NF, 5NF, and 6NF but we won't discuss them here. Check out this [amazing video](https://www.swifttechco.com) that goes into detail._
+_There are more normal forms such as 4NF, 5NF, and 6NF but we won't discuss them here. Check out this amazing video that goes into detail._
 
 In a relational database, a relation is often described as _"normalized"_ if it meets the third normal form. Most 3NF relations are free of insertion, update, and deletion anomalies.
 
@@ -1572,19 +1481,19 @@ We live in a physical world and can't guarantee the stability of a network, so d
 
 A CA database delivers consistency and availability across all nodes. It can't do this if there is a partition between any two nodes in the system, and therefore can't deliver fault tolerance.
 
-**Example**: [PostgreSQL](https://www.swifttechco.com), [MariaDB](https://www.swifttechco.com).
+**Example**: PostgreSQL, MariaDB.
 
 ### CP database
 
 A CP database delivers consistency and partition tolerance at the expense of availability. When a partition occurs between any two nodes, the system has to shut down the non-consistent node until the partition is resolved.
 
-**Example**: [MongoDB](https://www.swifttechco.com), [Apache HBase](https://www.swifttechco.com).
+**Example**: MongoDB, Apache HBase.
 
 ### AP database
 
 An AP database delivers availability and partition tolerance at the expense of consistency. When a partition occurs, all nodes remain available but those at the wrong end of a partition might return an older version of data than others. When the partition is resolved, the AP databases typically re-syncs the nodes to repair all inconsistencies in the system.
 
-**Example**: [Apache Cassandra](https://www.swifttechco.com), [CouchDB](https://www.swifttechco.com).
+**Example**: Apache Cassandra, CouchDB.
 
 # PACELC Theorem
 
@@ -1592,7 +1501,7 @@ The PACELC theorem is an extension of the CAP theorem. The CAP theorem states th
 
 PACELC extends the CAP theorem by introducing latency (L) as an additional attribute of a distributed system. The theorem states that else (E), even when the system is running normally in the absence of partitions, one has to choose between latency (L) and consistency (C).
 
-_The PACELC theorem was first described by [Daniel J. Abadi](https://www.swifttechco.com)._
+_The PACELC theorem was first described by Daniel J. Abadi._
 
 [![pacelc-theorem](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-II/pacelc-theorem/pacelc-theorem.png)](https://www.swifttechco.com)
 
@@ -1956,8 +1865,8 @@ Below are some disadvantages of consistent hashing:
 
 Let's look at some examples where consistent hashing is used:
 
-- Data partitioning in [Apache Cassandra](https://www.swifttechco.com).
-- Load distribution across multiple storage hosts in [Amazon DynamoDB](https://www.swifttechco.com).
+- Data partitioning in Apache Cassandra.
+- Load distribution across multiple storage hosts in Amazon DynamoDB.
 
 # Database Federation
 
@@ -2062,8 +1971,8 @@ Message brokers can validate, store, route, and deliver messages to the appropri
 
 Message brokers offer two basic message distribution patterns or messaging styles:
 
-- **[Point-to-Point messaging](https://www.swifttechco.com)**: This is the distribution pattern utilized in message queues with a one-to-one relationship between the message's sender and receiver.
-- **[Publish-Subscribe messaging](https://www.swifttechco.com)**: In this message distribution pattern, often referred to as _"pub/sub"_, the producer of each message publishes it to a topic, and multiple message consumers subscribe to topics from which they want to receive messages.
+- **Point-to-Point messaging**: This is the distribution pattern utilized in message queues with a one-to-one relationship between the message's sender and receiver.
+- **Publish-Subscribe messaging**: In this message distribution pattern, often referred to as _"pub/sub"_, the producer of each message publishes it to a topic, and multiple message consumers subscribe to topics from which they want to receive messages.
 
 _We will discuss these messaging patterns in detail in the later tutorials._
 
@@ -2075,18 +1984,18 @@ Event streaming platforms offer more scalability than message brokers but fewer 
 
 ## Message brokers vs Enterprise Service Bus (ESB)
 
-[Enterprise Service Bus (ESB)](https://www.swifttechco.com) infrastructure is complex and can be challenging to integrate and expensive to maintain. It's difficult to troubleshoot them when problems occur in production environments, they're not easy to scale, and updating is tedious.
+Enterprise Service Bus (ESB) infrastructure is complex and can be challenging to integrate and expensive to maintain. It's difficult to troubleshoot them when problems occur in production environments, they're not easy to scale, and updating is tedious.
 
-Whereas message brokers are a _"lightweight"_ alternative to ESBs that provide similar functionality, a mechanism for inter-service communication, at a lower cost. They're well-suited for use in the [microservices architectures](https://www.swifttechco.com) that have become more prevalent as ESBs have fallen out of favor.
+Whereas message brokers are a _"lightweight"_ alternative to ESBs that provide similar functionality, a mechanism for inter-service communication, at a lower cost. They're well-suited for use in the microservices architectures that have become more prevalent as ESBs have fallen out of favor.
 
 ## Examples
 
 Here are some commonly used message brokers:
 
-- [NATS](https://www.swifttechco.com)
-- [Apache Kafka](https://www.swifttechco.com)
-- [RabbitMQ](https://www.swifttechco.com)
-- [ActiveMQ](https://www.swifttechco.com)
+- NATS
+- Apache Kafka
+- RabbitMQ
+- ActiveMQ
 
 # Message Queues
 
@@ -2158,16 +2067,16 @@ Tasks queues receive tasks and their related data, run them, then deliver their 
 
 ## Backpressure
 
-If queues start to grow significantly, the queue size can become larger than memory, resulting in cache misses, disk reads, and even slower performance. Backpressure can help by limiting the queue size, thereby maintaining a high throughput rate and good response times for jobs already in the queue. Once the queue fills up, clients get a server busy or HTTP 503 status code to try again later. Clients can retry the request at a later time, perhaps with [exponential backoff](https://www.swifttechco.com) strategy.
+If queues start to grow significantly, the queue size can become larger than memory, resulting in cache misses, disk reads, and even slower performance. Backpressure can help by limiting the queue size, thereby maintaining a high throughput rate and good response times for jobs already in the queue. Once the queue fills up, clients get a server busy or HTTP 503 status code to try again later. Clients can retry the request at a later time, perhaps with exponential backoff strategy.
 
 ## Examples
 
 Following are some widely used message queues:
 
-- [Amazon SQS](https://www.swifttechco.com)
-- [RabbitMQ](https://www.swifttechco.com)
-- [ActiveMQ](https://www.swifttechco.com)
-- [ZeroMQ](https://www.swifttechco.com)
+- Amazon SQS
+- RabbitMQ
+- ActiveMQ
+- ZeroMQ
 
 # Publish-Subscribe
 
@@ -2226,8 +2135,8 @@ Message topics authenticate applications that try to publish content, this allow
 
 Here are some commonly used publish-subscribe technologies:
 
-- [Amazon SNS](https://www.swifttechco.com)
-- [Google Pub/Sub](https://www.swifttechco.com)
+- Amazon SNS
+- Google Pub/Sub
 
 # Enterprise Service Bus (ESB)
 
@@ -2257,10 +2166,10 @@ While ESBs were deployed successfully in many organizations, in many other organ
 
 Below are some widely used Enterprise Service Bus (ESB) technologies:
 
-- [Azure Service Bus](https://www.swifttechco.com)
-- [IBM App Connect](https://www.swifttechco.com)
-- [Apache Camel](https://www.swifttechco.com)
-- [Fuse ESB](https://www.swifttechco.com)
+- Azure Service Bus
+- IBM App Connect
+- Apache Camel
+- Fuse ESB
 
 # Monoliths and Microservices
 
@@ -2349,7 +2258,7 @@ Let's discuss some microservices best practices:
 - Data storage should be private to the service that owns the data
 - Avoid coupling between services. Causes of coupling include shared database schemas and rigid communication protocols.
 - Decentralize everything. Individual teams are responsible for designing and building services. Avoid sharing code or data schemas.
-- Fail fast by using a [circuit breaker](https://www.swifttechco.com) to achieve fault tolerance.
+- Fail fast by using a circuit breaker to achieve fault tolerance.
 - Ensure that the API changes are backward compatible.
 
 ### Pitfalls
@@ -2362,7 +2271,7 @@ Below are some common pitfalls of microservices architecture:
 - Lack of Business Alignment.
 - Lack of clear ownership.
 - Lack of idempotency.
-- Trying to do everything [ACID instead of BASE](https://www.swifttechco.com).
+- Trying to do everything ACID instead of BASE.
 - Lack of design for fault tolerance may result in cascading failures.
 
 ## Beware of the distributed monolith
@@ -2431,10 +2340,10 @@ _Note: Dots in the diagram represents different events in the system._
 
 There are several ways to implement the event-driven architecture, and which method we use depends on the use case but here are some common examples:
 
-- [Sagas](https://www.swifttechco.com)
-- [Publish-Subscribe](https://www.swifttechco.com)
-- [Event Sourcing](https://www.swifttechco.com)
-- [Command and Query Responsibility Segregation (CQRS)](https://www.swifttechco.com)
+- Sagas
+- Publish-Subscribe
+- Event Sourcing
+- Command and Query Responsibility Segregation (CQRS)
 
 _Note: Each of these methods is discussed separately._
 
@@ -2469,11 +2378,11 @@ Below are some common use cases where event-driven architectures are beneficial:
 
 Here are some widely used technologies for implementing event-driven architectures:
 
-- [NATS](https://www.swifttechco.com)
-- [Apache Kafka](https://www.swifttechco.com)
-- [Amazon EventBridge](https://www.swifttechco.com)
-- [Amazon SNS](https://www.swifttechco.com)
-- [Google PubSub](https://www.swifttechco.com)
+- NATS
+- Apache Kafka
+- Amazon EventBridge
+- Amazon SNS
+- Google PubSub
 
 # Event Sourcing
 
@@ -2485,7 +2394,7 @@ This can simplify tasks in complex domains, by avoiding the need to synchronize 
 
 ## Event sourcing vs Event-Driven Architecture (EDA)
 
-Event sourcing is seemingly constantly being confused with [Event-driven Architecture (EDA)](https://www.swifttechco.com). Event-driven architecture is about using events to communicate between service boundaries. Generally, leveraging a message broker to publish and consume events asynchronously within other boundaries.
+Event sourcing is seemingly constantly being confused with Event-driven Architecture (EDA). Event-driven architecture is about using events to communicate between service boundaries. Generally, leveraging a message broker to publish and consume events asynchronously within other boundaries.
 
 Whereas, event sourcing is about using events as a state, which is a different approach to storing data. Rather than storing the current state, we're instead going to be storing events. Also, event sourcing is one of the several patterns to implement an event-driven architecture.
 
@@ -2508,7 +2417,7 @@ Following are the disadvantages of event sourcing:
 
 # Command and Query Responsibility Segregation (CQRS)
 
-Command Query Responsibility Segregation (CQRS) is an architectural pattern that divides a system's actions into commands and queries. It was first described by [Greg Young](https://www.swifttechco.com).
+Command Query Responsibility Segregation (CQRS) is an architectural pattern that divides a system's actions into commands and queries. It was first described by Greg Young.
 
 In CQRS, a _command_ is an instruction, a directive to perform a specific task. It is an intention to change something and doesn't return a value, only an indication of success or failure. And, a _query_ is a request for information that doesn't change the system's state or cause any side effects.
 
@@ -2565,15 +2474,15 @@ The granularity of APIs provided by microservices is often different than what a
 Below are some desired features of an API Gateway:
 
 - Authentication and Authorization
-- [Service discovery](https://www.swifttechco.com)
-- [Reverse Proxy](https://www.swifttechco.com)
-- [Caching](https://www.swifttechco.com)
+- Service discovery
+- Reverse Proxy
+- Caching
 - Security
-- Retry and [Circuit breaking](https://www.swifttechco.com)
-- [Load balancing](https://www.swifttechco.com)
+- Retry and Circuit breaking
+- Load balancing
 - Logging, Tracing
 - API composition
-- [Rate limiting](https://www.swifttechco.com) and throttling
+- Rate limiting and throttling
 - Versioning
 - Routing
 - IP whitelisting or blacklisting
@@ -2598,7 +2507,7 @@ Here are some possible disadvantages of an API Gateway:
 
 ## Backend For Frontend (BFF) pattern
 
-In the Backend For Frontend (BFF) pattern, we create separate backend services to be consumed by specific frontend applications or interfaces. This pattern is useful when we want to avoid customizing a single backend for multiple interfaces. This pattern was first described by [Sam Newman](https://www.swifttechco.com).
+In the Backend For Frontend (BFF) pattern, we create separate backend services to be consumed by specific frontend applications or interfaces. This pattern is useful when we want to avoid customizing a single backend for multiple interfaces. This pattern was first described by Sam Newman.
 
 Also, sometimes the output of data returned by the microservices to the front end is not in the exact format or filtered as needed by the front end. To solve this issue, the frontend should have some logic to reformat the data, and therefore, we can use BFF to shift some of this logic to the intermediate layer.
 
@@ -2606,7 +2515,7 @@ Also, sometimes the output of data returned by the microservices to the front en
 
 The primary function of the backend for the frontend pattern is to get the required data from the appropriate service, format the data, and sent it to the frontend.
 
-_[GraphQL](https://www.swifttechco.com) performs really well as a backend for frontend (BFF)._
+_GraphQL performs really well as a backend for frontend (BFF)._
 
 ### When to use this pattern?
 
@@ -2620,10 +2529,10 @@ We should consider using a Backend For Frontend (BFF) pattern when:
 
 Following are some widely used gateways technologies:
 
-- [Amazon API Gateway](https://www.swifttechco.com)
-- [Apigee API Gateway](https://www.swifttechco.com)
-- [Azure API Gateway](https://www.swifttechco.com)
-- [Kong API Gateway](https://www.swifttechco.com)
+- Amazon API Gateway
+- Apigee API Gateway
+- Azure API Gateway
+- Kong API Gateway
 
 # REST, GraphQL, gRPC
 
@@ -2639,7 +2548,7 @@ In other words, if you want to interact with a computer or system to retrieve in
 
 ## REST
 
-A [REST API](https://www.swifttechco.com) (also known as RESTful API) is an application programming interface that conforms to the constraints of REST architectural style and allows for interaction with RESTful web services. REST stands for Representational State Transfer and it was first introduced by [Roy Fielding](https://www.swifttechco.com) in the year 2000.
+A REST API (also known as RESTful API) is an application programming interface that conforms to the constraints of REST architectural style and allows for interaction with RESTful web services. REST stands for Representational State Transfer and it was first introduced by Roy Fielding in the year 2000.
 
 _In REST API, the fundamental unit is a resource._
 
@@ -2673,7 +2582,7 @@ Below are some commonly used HTTP verbs:
 
 **HTTP response codes**
 
-[HTTP response status codes](https://www.swifttechco.com) indicate whether a specific HTTP request has been successfully completed.
+HTTP response status codes indicate whether a specific HTTP request has been successfully completed.
 
 There are five classes defined by the standard:
 
@@ -2717,11 +2626,11 @@ Here's an example usage of a REST API that operates on a **users** resource.
 | /users/\{id\} | PATCH     | Update a user by id |
 | /users/\{id\} | DELETE    | Delete a user by id |
 
-_There is so much more to learn when it comes to REST APIs, I will highly recommend looking into [Hypermedia as the Engine of Application State (HATEOAS)](https://www.swifttechco.com)._
+_There is so much more to learn when it comes to REST APIs, I will highly recommend looking into Hypermedia as the Engine of Application State (HATEOAS)._
 
 ## GraphQL
 
-[GraphQL](https://www.swifttechco.com) is a query language and server-side runtime for APIs that prioritizes giving clients exactly the data they request and no more. It was developed by [Facebook](https://www.swifttechco.com) and later open-sourced in 2015.
+GraphQL is a query language and server-side runtime for APIs that prioritizes giving clients exactly the data they request and no more. It was developed by Facebook and later open-sourced in 2015.
 
 GraphQL is designed to make APIs fast, flexible, and developer-friendly. Additionally, GraphQL gives API maintainers the flexibility to add or deprecate fields without impacting existing queries. Developers can build APIs with whatever methods they prefer, and the GraphQL specification will ensure they function in predictable ways to clients.
 
@@ -2737,7 +2646,7 @@ A GraphQL schema describes the functionality clients can utilize once they conne
 
 **Queries**
 
-A query is a request made by the client. It can consist of fields and arguments for the query. The operation type of a query can also be a [mutation](https://www.swifttechco.com) which provides a way to modify server-side data.
+A query is a request made by the client. It can consist of fields and arguments for the query. The operation type of a query can also be a mutation which provides a way to modify server-side data.
 
 **Resolvers**
 
@@ -2810,11 +2719,11 @@ This will give the following response to the client.
 }
 ```
 
-_Learn more about GraphQL at [graphql.org](https://www.swifttechco.com)._
+_Learn more about GraphQL at graphql.org._
 
 ## gRPC
 
-[gRPC](https://www.swifttechco.com) is a modern open-source high-performance [Remote Procedure Call (RPC)](https://www.swifttechco.com) framework that can run in any environment. It can efficiently connect services in and across data centers with pluggable support for load balancing, tracing, health checking, authentication and much more.
+gRPC is a modern open-source high-performance Remote Procedure Call (RPC) framework that can run in any environment. It can efficiently connect services in and across data centers with pluggable support for load balancing, tracing, health checking, authentication and much more.
 
 ### Concepts
 
@@ -2826,7 +2735,7 @@ Protocol buffers provide a language and platform-neutral extensible mechanism fo
 
 **Service definition**
 
-Like many RPC systems, gRPC is based on the idea of defining a service and specifying the methods that can be called remotely with their parameters and return types. gRPC uses protocol buffers as the [Interface Definition Language (IDL)](https://www.swifttechco.com) for describing both the service interface and the structure of the payload messages.
+Like many RPC systems, gRPC is based on the idea of defining a service and specifying the methods that can be called remotely with their parameters and return types. gRPC uses protocol buffers as the Interface Definition Language (IDL) for describing both the service interface and the structure of the payload messages.
 
 ### Advantages
 
@@ -2949,7 +2858,7 @@ This is made possible by providing a standardized way for the server to send con
 Let's understand how WebSockets work:
 
 1. The client initiates a WebSocket handshake process by sending a request.
-2. The request also contains an [HTTP Upgrade](https://www.swifttechco.com) header that allows the request to switch to the WebSocket protocol (`ws://`).
+2. The request also contains an HTTP Upgrade header that allows the request to switch to the WebSocket protocol (`ws://`).
 3. The server sends a response to the client, acknowledging the WebSocket handshake request.
 4. A WebSocket connection will be opened once the client receives a successful handshake response.
 5. Now the client and server can start sending data in both directions allowing real-time communication.
@@ -3044,14 +2953,14 @@ Here are some common use cases for Geohashing:
 
 Geohashing is widely used and it is supported by popular databases.
 
-- [MySQL](https://www.swifttechco.com)
-- [Redis](https://www.swifttechco.com)
-- [Amazon DynamoDB](https://www.swifttechco.com)
-- [Google Cloud Firestore](https://www.swifttechco.com)
+- MySQL
+- Redis
+- Amazon DynamoDB
+- Google Cloud Firestore
 
 ## Quadtrees
 
-A quadtree is a tree data structure in which each internal node has exactly four children. They are often used to partition a two-dimensional space by recursively subdividing it into four quadrants or regions. Each child or leaf node stores spatial information. Quadtrees are the two-dimensional analog of [Octrees](https://www.swifttechco.com) which are used to partition three-dimensional space.
+A quadtree is a tree data structure in which each internal node has exactly four children. They are often used to partition a two-dimensional space by recursively subdividing it into four quadrants or regions. Each child or leaf node stores spatial information. Quadtrees are the two-dimensional analog of Octrees which are used to partition three-dimensional space.
 
 [![quadtree](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-IV/geohashing-and-quadtrees/quadtree.png)](https://www.swifttechco.com)
 
@@ -3067,11 +2976,11 @@ Quadtrees may be classified according to the type of data they represent, includ
 
 ### Why do we need Quadtrees?
 
-Aren't latitudes and longitudes enough? Why do we need quadtrees? While in theory using latitude and longitude we can determine things such as how close points are to each other using [euclidean distance](https://www.swifttechco.com), for practical use cases it is simply not scalable because of its CPU-intensive nature with large data sets.
+Aren't latitudes and longitudes enough? Why do we need quadtrees? While in theory using latitude and longitude we can determine things such as how close points are to each other using euclidean distance, for practical use cases it is simply not scalable because of its CPU-intensive nature with large data sets.
 
 [![quadtree-subdivision](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-IV/geohashing-and-quadtrees/quadtree-subdivision.png)](https://www.swifttechco.com)
 
-Quadtrees enable us to search points within a two-dimensional range efficiently, where those points are defined as latitude/longitude coordinates or as cartesian (x, y) coordinates. Additionally, we can save further computation by only subdividing a node after a certain threshold. And with the application of mapping algorithms such as the [Hilbert curve](https://www.swifttechco.com), we can easily improve range query performance.
+Quadtrees enable us to search points within a two-dimensional range efficiently, where those points are defined as latitude/longitude coordinates or as cartesian (x, y) coordinates. Additionally, we can save further computation by only subdividing a node after a certain threshold. And with the application of mapping algorithms such as the Hilbert curve, we can easily improve range query performance.
 
 ### Use cases
 
@@ -3158,7 +3067,7 @@ Rate Limiting becomes complicated when distributed systems are involved. The two
 
 When using a cluster of multiple nodes, we might need to enforce a global rate limit policy. Because if each node were to track its rate limit, a consumer could exceed a global rate limit when sending requests to different nodes. The greater the number of nodes, the more likely the user will exceed the global limit.
 
-The simplest way to solve this problem is to use sticky sessions in our load balancers so that each consumer gets sent to exactly one node but this causes a lack of fault tolerance and scaling problems. Another approach might be to use a centralized data store like [Redis](https://www.swifttechco.com) but this will increase latency and cause race conditions.
+The simplest way to solve this problem is to use sticky sessions in our load balancers so that each consumer gets sent to exactly one node but this causes a lack of fault tolerance and scaling problems. Another approach might be to use a centralized data store like Redis but this will increase latency and cause race conditions.
 
 ### Race Conditions
 
@@ -3208,16 +3117,16 @@ The registry keeps track of changes to running instances by polling the deployme
 
 ## Service mesh
 
-Service-to-service communication is essential in a distributed application but routing this communication, both within and across application clusters, becomes increasingly complex as the number of services grows. Service mesh enables managed, observable, and secure communication between individual services. It works with a service discovery protocol to detect services. [Istio](https://www.swifttechco.com) and [envoy](https://www.swifttechco.com) are some of the most commonly used service mesh technologies.
+Service-to-service communication is essential in a distributed application but routing this communication, both within and across application clusters, becomes increasingly complex as the number of services grows. Service mesh enables managed, observable, and secure communication between individual services. It works with a service discovery protocol to detect services. Istio and envoy are some of the most commonly used service mesh technologies.
 
 ## Examples
 
 Here are some commonly used service discovery infrastructure tools:
 
-- [etcd](https://www.swifttechco.com)
-- [Consul](https://www.swifttechco.com)
-- [Apache Thrift](https://www.swifttechco.com)
-- [Apache Zookeeper](https://www.swifttechco.com)
+- etcd
+- Consul
+- Apache Thrift
+- Apache Zookeeper
 
 # SLA, SLO, SLI
 
@@ -3247,7 +3156,7 @@ Disaster recovery (DR) is a process of regaining access and functionality of the
 
 Disaster recovery relies upon the replication of data and computer processing in an off-premises location not affected by the disaster. When servers go down because of a disaster, a business needs to recover lost data from a second location where the data is backed up. Ideally, an organization can transfer its computer processing to that remote location as well in order to continue operations.
 
-_Disaster Recovery is often not actively discussed during system design interviews but it's important to have some basic understanding of this topic. You can learn more about disaster recovery from [AWS Well-Architected Framework](https://www.swifttechco.com)._
+_Disaster Recovery is often not actively discussed during system design interviews but it's important to have some basic understanding of this topic. You can learn more about disaster recovery from AWS Well-Architected Framework._
 
 ## Why is disaster recovery important?
 
@@ -3474,10 +3383,10 @@ Here are some disadvantages of Single Sign-On:
 
 These are some commonly used Identity Providers (IdP):
 
-- [Okta](https://www.swifttechco.com)
-- [Google](https://www.swifttechco.com)
-- [Auth0](https://www.swifttechco.com)
-- [OneLogin](https://www.swifttechco.com)
+- Okta
+- Google
+- Auth0
+- OneLogin
 
 # SSL, TLS, mTLS
 
@@ -3513,7 +3422,7 @@ Mutual TLS, or mTLS, is a method for mutual authentication. mTLS ensures that th
 
 mTLS helps ensure that the traffic is secure and trusted in both directions between a client and server. This provides an additional layer of security for users who log in to an organization's network or applications. It also verifies connections with client devices that do not follow a login process, such as Internet of Things (IoT) devices.
 
-Nowadays, mTLS is commonly used by microservices or distributed systems in a [zero trust security model](https://www.swifttechco.com) to verify each other.
+Nowadays, mTLS is commonly used by microservices or distributed systems in a zero trust security model to verify each other.
 
 # System Design Interviews
 
@@ -3622,7 +3531,7 @@ Make sure to read the engineering blog of the company you're interviewing with. 
 
 # URL Shortener
 
-Let's design a URL shortener, similar to services like [Bitly](https://www.swifttechco.com), [TinyURL](https://www.swifttechco.com).
+Let's design a URL shortener, similar to services like Bitly, TinyURL.
 
 ## What is a URL Shortener?
 
@@ -3630,9 +3539,9 @@ A URL shortener service creates an alias or a short URL for a long URL. Users ar
 
 For example, the following long URL can be changed to a shorter URL.
 
-**Long URL**: [https://www.swifttechco.com](https://www.swifttechco.com)
+**Long URL**: https://www.swifttechco.com
 
-**Short URL**: [https://www.swifttechco.com](https://www.swifttechco.com)
+**Short URL**: https://www.swifttechco.com
 
 ## Why do we need a URL shortener?
 
@@ -3726,7 +3635,7 @@ $$
 
 ### Cache
 
-For caching, we will follow the classic [Pareto principle](https://www.swifttechco.com) also known as the 80/20 rule. This means that 80% of the requests are for 20% of the data, so we can cache around 20% of our requests.
+For caching, we will follow the classic Pareto principle also known as the 80/20 rule. This means that 80% of the requests are for 20% of the data, so we can cache around 20% of our requests.
 
 Since we get around 4K read or redirection requests each second, this translates into 350M requests per day.
 
@@ -3767,13 +3676,13 @@ Stores user's details such as `name`, `email`, `createdAt`, etc.
 
 **urls**
 
-Contains the new short URL's properties such as `expiration`, `hash`, `originalURL`, and `userID` of the user who created the short URL. We can also use the `hash` column as an [index](https://www.swifttechco.com) to improve the query performance.
+Contains the new short URL's properties such as `expiration`, `hash`, `originalURL`, and `userID` of the user who created the short URL. We can also use the `hash` column as an index to improve the query performance.
 
 ### What kind of database should we use?
 
-Since the data is not strongly relational, NoSQL databases such as [Amazon DynamoDB](https://www.swifttechco.com), [Apache Cassandra](https://www.swifttechco.com), or [MongoDB](https://www.swifttechco.com) will be a better choice here, if we do decide to use an SQL database then we can use something like [Azure SQL Database](https://www.swifttechco.com) or [Amazon RDS](https://www.swifttechco.com).
+Since the data is not strongly relational, NoSQL databases such as Amazon DynamoDB, Apache Cassandra, or MongoDB will be a better choice here, if we do decide to use an SQL database then we can use something like Azure SQL Database or Amazon RDS.
 
-_For more details, refer to [SQL vs NoSQL](https://www.swifttechco.com)._
+_For more details, refer to SQL vs NoSQL._
 
 ## API design
 
@@ -3849,7 +3758,7 @@ Our system's primary goal is to shorten a given URL, let's look at different app
 
 **Base62 Approach**
 
-In this approach, we can encode the original URL using [Base62](https://www.swifttechco.com) which consists of the capital letters A-Z, the lower case letters a-z, and the numbers 0-9.
+In this approach, we can encode the original URL using Base62 which consists of the capital letters A-Z, the lower case letters a-z, and the numbers 0-9.
 
 $$
 Number \space of \space URLs = 62^N
@@ -3873,7 +3782,7 @@ This is the simplest solution here, but it does not guarantee non-duplicate or c
 
 **MD5 Approach**
 
-The [MD5 message-digest algorithm](https://www.swifttechco.com) is a widely used hash function producing a 128-bit hash value (or 32 hexadecimal digits). We can use these 32 hexadecimal digits for generating 7 characters long URL.
+The MD5 message-digest algorithm is a widely used hash function producing a 128-bit hash value (or 32 hexadecimal digits). We can use these 32 hexadecimal digits for generating 7 characters long URL.
 
 $$
 MD5(original\_url) \rightarrow base62encode \rightarrow hash
@@ -3891,7 +3800,7 @@ $$
 
 The problem with this approach is that it can quickly become a single point for failure. And if we run multiple instances of the counter we can have collision as it's essentially a distributed system.
 
-To solve this issue we can use a distributed system manager such as [Zookeeper](https://www.swifttechco.com) which can provide distributed synchronization. Zookeeper can maintain multiple ranges for our servers.
+To solve this issue we can use a distributed system manager such as Zookeeper which can provide distributed synchronization. Zookeeper can maintain multiple ranges for our servers.
 
 $$
 \begin{align*}
@@ -3926,9 +3835,9 @@ While 390 GB seems like a lot for this simple use case, it is important to remem
 
 ### Caching
 
-Now, let's talk about [caching](https://www.swifttechco.com). As per our estimations, we will require around ~35 GB of memory per day to cache 20% of the incoming requests to our services. For this use case, we can use [Redis](https://www.swifttechco.com) or [Memcached](https://www.swifttechco.com) servers alongside our API server.
+Now, let's talk about caching. As per our estimations, we will require around ~35 GB of memory per day to cache 20% of the incoming requests to our services. For this use case, we can use Redis or Memcached servers alongside our API server.
 
-_For more details, refer to [caching](https://www.swifttechco.com)._
+_For more details, refer to caching._
 
 ### Design
 
@@ -3957,16 +3866,16 @@ It's time to discuss the finer details of our design.
 
 ### Data Partitioning
 
-To scale out our databases we will need to partition our data. Horizontal partitioning (aka [Sharding](https://www.swifttechco.com)) can be a good first step. We can use partitions schemes such as:
+To scale out our databases we will need to partition our data. Horizontal partitioning (aka Sharding) can be a good first step. We can use partitions schemes such as:
 
 - Hash-Based Partitioning
 - List-Based Partitioning
 - Range Based Partitioning
 - Composite Partitioning
 
-The above approaches can still cause uneven data and load distribution, we can solve this using [Consistent hashing](https://www.swifttechco.com).
+The above approaches can still cause uneven data and load distribution, we can solve this using Consistent hashing.
 
-_For more details, refer to [Sharding](https://www.swifttechco.com) and [Consistent Hashing](https://www.swifttechco.com)._
+_For more details, refer to Sharding and Consistent Hashing._
 
 ### Database cleanup
 
@@ -3974,7 +3883,7 @@ This is more of a maintenance step for our services and depends on whether we ke
 
 **Active cleanup**
 
-In active cleanup, we will run a separate cleanup service which will periodically remove expired links from our storage and cache. This will be a very lightweight service like a [cron job](https://www.swifttechco.com).
+In active cleanup, we will run a separate cleanup service which will periodically remove expired links from our storage and cache. This will be a very lightweight service like a cron job.
 
 **Passive cleanup**
 
@@ -3982,13 +3891,13 @@ For passive cleanup, we can remove the entry when a user tries to access an expi
 
 ### Cache
 
-Now let us talk about [caching](https://www.swifttechco.com).
+Now let us talk about caching.
 
 **Which cache eviction policy to use?**
 
-As we discussed before, we can use solutions like [Redis](https://www.swifttechco.com) or [Memcached](https://www.swifttechco.com) and cache 20% of the daily traffic but what kind of cache eviction policy would best fit our needs?
+As we discussed before, we can use solutions like Redis or Memcached and cache 20% of the daily traffic but what kind of cache eviction policy would best fit our needs?
 
-[Least Recently Used (LRU)](https://www.swifttechco.com) can be a good policy for our system. In this policy, we discard the least recently used key first.
+Least Recently Used (LRU) can be a good policy for our system. In this policy, we discard the least recently used key first.
 
 **How to handle cache miss?**
 
@@ -4002,7 +3911,7 @@ Recording analytics and metrics is one of our extended requirements. We can stor
 
 For security, we can introduce private URLs and authorization. A separate table can be used to store user ids that have permission to access a specific URL. If a user does not have proper permissions, we can return an HTTP 401 (Unauthorized) error.
 
-We can also use an [API Gateway](https://www.swifttechco.com) as they can support capabilities like authorization, rate limiting, and load balancing out of the box.
+We can also use an API Gateway as they can support capabilities like authorization, rate limiting, and load balancing out of the box.
 
 ## Identify and resolve bottlenecks
 
@@ -4019,14 +3928,14 @@ Let us identify and resolve bottlenecks such as single points of failure in our 
 To make our system more resilient we can do the following:
 
 - Running multiple instances of our Servers and Key Generation Service.
-- Introducing [load balancers](https://www.swifttechco.com) between clients, servers, databases, and cache servers.
+- Introducing load balancers between clients, servers, databases, and cache servers.
 - Using multiple read replicas for our database as it's a read-heavy system.
 - Standby replica for our key database in case it fails.
 - Multiple instances and replicas for our distributed cache.
 
 # WhatsApp
 
-Let's design a [WhatsApp](https://www.swifttechco.com) like instant messaging service, similar to services like [Facebook Messenger](https://www.swifttechco.com), and [WeChat](https://www.swifttechco.com).
+Let's design a WhatsApp like instant messaging service, similar to services like Facebook Messenger, and WeChat.
 
 ## What is WhatsApp?
 
@@ -4157,7 +4066,7 @@ This table maps users and groups as multiple users can be a part of multiple gro
 
 While our data model seems quite relational, we don't necessarily need to store everything in a single database, as this can limit our scalability and quickly become a bottleneck.
 
-We will split the data between different services each having ownership over a particular table. Then we can use a relational database such as [PostgreSQL](https://www.swifttechco.com) or a distributed NoSQL database such as [Apache Cassandra](https://www.swifttechco.com) for our use case.
+We will split the data between different services each having ownership over a particular table. Then we can use a relational database such as PostgreSQL or a distributed NoSQL database such as Apache Cassandra for our use case.
 
 ## API design
 
@@ -4242,7 +4151,7 @@ Now let us do a high-level design of our system.
 
 ### Architecture
 
-We will be using [microservices architecture](https://www.swifttechco.com) since it will make it easier to horizontally scale and decouple our services. Each service will have ownership of its own data model. Let's try to divide our system into some core services.
+We will be using microservices architecture since it will make it easier to horizontally scale and decouple our services. Each service will have ownership of its own data model. Let's try to divide our system into some core services.
 
 **User Service**
 
@@ -4266,11 +4175,11 @@ This service will handle the media (images, videos, files, etc.) uploads. It wil
 
 **What about inter-service communication and service discovery?**
 
-Since our architecture is microservices-based, services will be communicating with each other as well. Generally, REST or HTTP performs well but we can further improve the performance using [gRPC](https://www.swifttechco.com) which is more lightweight and efficient.
+Since our architecture is microservices-based, services will be communicating with each other as well. Generally, REST or HTTP performs well but we can further improve the performance using gRPC which is more lightweight and efficient.
 
-[Service discovery](https://www.swifttechco.com) is another thing we will have to take into account. We can also use a service mesh that enables managed, observable, and secure communication between individual services.
+Service discovery is another thing we will have to take into account. We can also use a service mesh that enables managed, observable, and secure communication between individual services.
 
-_Note: Learn more about [REST, GraphQL, gRPC](https://www.swifttechco.com) and how they compare with each other._
+_Note: Learn more about REST, GraphQL, gRPC and how they compare with each other._
 
 ### Real-time messaging
 
@@ -4278,19 +4187,19 @@ How do we efficiently send and receive messages? We have two different options:
 
 **Pull model**
 
-The client can periodically send an HTTP request to servers to check if there are any new messages. This can be achieved via something like [Long polling](https://www.swifttechco.com).
+The client can periodically send an HTTP request to servers to check if there are any new messages. This can be achieved via something like Long polling.
 
 **Push model**
 
-The client opens a long-lived connection with the server and once new data is available it will be pushed to the client. We can use [WebSockets](https://www.swifttechco.com) or [Server-Sent Events (SSE)](https://www.swifttechco.com) for this.
+The client opens a long-lived connection with the server and once new data is available it will be pushed to the client. We can use WebSockets or Server-Sent Events (SSE) for this.
 
-The pull model approach is not scalable as it will create unnecessary request overhead on our servers and most of the time the response will be empty, thus wasting our resources. To minimize latency, using the push model with [WebSockets](https://www.swifttechco.com) is a better choice because then we can push data to the client once it's available without any delay, given that the connection is open with the client. Also, WebSockets provide full-duplex communication, unlike [Server-Sent Events (SSE)](https://www.swifttechco.com) which are only unidirectional.
+The pull model approach is not scalable as it will create unnecessary request overhead on our servers and most of the time the response will be empty, thus wasting our resources. To minimize latency, using the push model with WebSockets is a better choice because then we can push data to the client once it's available without any delay, given that the connection is open with the client. Also, WebSockets provide full-duplex communication, unlike Server-Sent Events (SSE) which are only unidirectional.
 
-_Note: Learn more about [Long polling, WebSockets, Server-Sent Events (SSE)](https://www.swifttechco.com)._
+_Note: Learn more about Long polling, WebSockets, Server-Sent Events (SSE)._
 
 ### Last seen
 
-To implement the last seen functionality, we can use a [heartbeat](https://www.swifttechco.com) mechanism, where the client can periodically ping the servers indicating its liveness. Since this needs to be as low overhead as possible, we can store the last active timestamp in the cache as follows:
+To implement the last seen functionality, we can use a heartbeat mechanism, where the client can periodically ping the servers indicating its liveness. Since this needs to be as low overhead as possible, we can store the last active timestamp in the cache as follows:
 
 | Key    | Value               |
 | ------ | ------------------- |
@@ -4298,7 +4207,7 @@ To implement the last seen functionality, we can use a [heartbeat](https://www.s
 | User B | 2022-07-05T05:10:35 |
 | User C | 2022-07-10T04:33:25 |
 
-This will give us the last time the user was active. This functionality will be handled by the presence service combined with [Redis](https://www.swifttechco.com) or [Memcached](https://www.swifttechco.com) as our cache.
+This will give us the last time the user was active. This functionality will be handled by the presence service combined with Redis or Memcached as our cache.
 
 Another way to implement this is to track the latest action of the user, once the last activity crosses a certain threshold, such as _"user hasn't performed any action in the last 30 seconds"_, we can show the user as offline and last seen with the last recorded timestamp. This will be more of a lazy update approach and might benefit us over heartbeat mechanism in certain cases.
 
@@ -4306,19 +4215,19 @@ Another way to implement this is to track the latest action of the user, once th
 
 Once a message is sent in a chat or a group, we will first check if the recipient is active or not, we can get this information by taking the user's active connection and last seen into consideration.
 
-If the recipient is not active, the chat service will add an event to a [message queue](https://www.swifttechco.com) with additional metadata such as the client's device platform which will be used to route the notification to the correct platform later on.
+If the recipient is not active, the chat service will add an event to a message queue with additional metadata such as the client's device platform which will be used to route the notification to the correct platform later on.
 
-The notification service will then consume the event from the message queue and forward the request to [Firebase Cloud Messaging (FCM)](https://www.swifttechco.com) or [Apple Push Notification Service (APNS)](https://www.swifttechco.com) based on the client's device platform (Android, iOS, web, etc). We can also add support for email and SMS.
+The notification service will then consume the event from the message queue and forward the request to Firebase Cloud Messaging (FCM) or Apple Push Notification Service (APNS) based on the client's device platform (Android, iOS, web, etc). We can also add support for email and SMS.
 
 **Why are we using a message queue?**
 
 Since most message queues provide best-effort ordering which ensures that messages are generally delivered in the same order as they're sent and that a message is delivered at least once which is an important part of our service functionality.
 
-While this seems like a classic [publish-subscribe](https://www.swifttechco.com) use case, it is actually not as mobile devices and browsers each have their own way of handling push notifications. Usually, notifications are handled externally via Firebase Cloud Messaging (FCM) or Apple Push Notification Service (APNS) unlike message fan-out which we commonly see in backend services. We can use something like [Amazon SQS](https://www.swifttechco.com) or [RabbitMQ](https://www.swifttechco.com) to support this functionality.
+While this seems like a classic publish-subscribe use case, it is actually not as mobile devices and browsers each have their own way of handling push notifications. Usually, notifications are handled externally via Firebase Cloud Messaging (FCM) or Apple Push Notification Service (APNS) unlike message fan-out which we commonly see in backend services. We can use something like Amazon SQS or RabbitMQ to support this functionality.
 
 ### Read receipts
 
-Handling read receipts can be tricky, for this use case we can wait for some sort of [Acknowledgment (ACK)](https://www.swifttechco.com) from the client to determine if the message was delivered and update the corresponding `deliveredAt` field. Similarly, we will mark the message as seen once the user opens the chat and update the corresponding `seenAt` timestamp field.
+Handling read receipts can be tricky, for this use case we can wait for some sort of Acknowledgment (ACK) from the client to determine if the message was delivered and update the corresponding `deliveredAt` field. Similarly, we will mark the message as seen once the user opens the chat and update the corresponding `seenAt` timestamp field.
 
 ### Design
 
@@ -4332,16 +4241,16 @@ It's time to discuss our design decisions in detail.
 
 ### Data Partitioning
 
-To scale out our databases we will need to partition our data. Horizontal partitioning (aka [Sharding](https://www.swifttechco.com)) can be a good first step. We can use partitions schemes such as:
+To scale out our databases we will need to partition our data. Horizontal partitioning (aka Sharding) can be a good first step. We can use partitions schemes such as:
 
 - Hash-Based Partitioning
 - List-Based Partitioning
 - Range Based Partitioning
 - Composite Partitioning
 
-The above approaches can still cause uneven data and load distribution, we can solve this using [Consistent hashing](https://www.swifttechco.com).
+The above approaches can still cause uneven data and load distribution, we can solve this using Consistent hashing.
 
-_For more details, refer to [Sharding](https://www.swifttechco.com) and [Consistent Hashing](https://www.swifttechco.com)._
+_For more details, refer to Sharding and Consistent Hashing._
 
 ### Caching
 
@@ -4351,37 +4260,37 @@ Some group chats can have thousands of messages and sending that over the networ
 
 **Which cache eviction policy to use?**
 
-We can use solutions like [Redis](https://www.swifttechco.com) or [Memcached](https://www.swifttechco.com) and cache 20% of the daily traffic but what kind of cache eviction policy would best fit our needs?
+We can use solutions like Redis or Memcached and cache 20% of the daily traffic but what kind of cache eviction policy would best fit our needs?
 
-[Least Recently Used (LRU)](https://www.swifttechco.com) can be a good policy for our system. In this policy, we discard the least recently used key first.
+Least Recently Used (LRU) can be a good policy for our system. In this policy, we discard the least recently used key first.
 
 **How to handle cache miss?**
 
 Whenever there is a cache miss, our servers can hit the database directly and update the cache with the new entries.
 
-_For more details, refer to [Caching](https://www.swifttechco.com)._
+_For more details, refer to Caching._
 
 ### Media access and storage
 
 As we know, most of our storage space will be used for storing media files such as images, videos, or other files. Our media service will be handling both access and storage of the user media files.
 
-But where can we store files at scale? Well, [object storage](https://www.swifttechco.com) is what we're looking for. Object stores break data files up into pieces called objects. It then stores those objects in a single repository, which can be spread out across multiple networked systems. We can also use distributed file storage such as [HDFS](https://www.swifttechco.com) or [GlusterFS](https://www.swifttechco.com).
+But where can we store files at scale? Well, object storage is what we're looking for. Object stores break data files up into pieces called objects. It then stores those objects in a single repository, which can be spread out across multiple networked systems. We can also use distributed file storage such as HDFS or GlusterFS.
 
 _Fun fact: WhatsApp deletes media on its servers once it has been downloaded by the user._
 
-We can use object stores like [Amazon S3](https://www.swifttechco.com), [Azure Blob Storage](https://www.swifttechco.com), or [Google Cloud Storage](https://www.swifttechco.com) for this use case.
+We can use object stores like Amazon S3, Azure Blob Storage, or Google Cloud Storage for this use case.
 
 ### Content Delivery Network (CDN)
 
-[Content Delivery Network (CDN)](https://www.swifttechco.com) increases content availability and redundancy while reducing bandwidth costs. Generally, static files such as images, and videos are served from CDN. We can use services like [Amazon CloudFront](https://www.swifttechco.com) or [Cloudflare CDN](https://www.swifttechco.com) for this use case.
+Content Delivery Network (CDN) increases content availability and redundancy while reducing bandwidth costs. Generally, static files such as images, and videos are served from CDN. We can use services like Amazon CloudFront or Cloudflare CDN for this use case.
 
 ### API gateway
 
-Since we will be using multiple protocols like HTTP, WebSocket, TCP/IP, deploying multiple L4 (transport layer) or L7 (application layer) type load balancers separately for each protocol will be expensive. Instead, we can use an [API Gateway](https://www.swifttechco.com) that supports multiple protocols without any issues.
+Since we will be using multiple protocols like HTTP, WebSocket, TCP/IP, deploying multiple L4 (transport layer) or L7 (application layer) type load balancers separately for each protocol will be expensive. Instead, we can use an API Gateway that supports multiple protocols without any issues.
 
 API Gateway can also offer other features such as authentication, authorization, rate limiting, throttling, and API versioning which will improve the quality of our services.
 
-We can use services like [Amazon API Gateway](https://www.swifttechco.com) or [Azure API Gateway](https://www.swifttechco.com) for this use case.
+We can use services like Amazon API Gateway or Azure API Gateway for this use case.
 
 ## Identify and resolve bottlenecks
 
@@ -4401,11 +4310,11 @@ Let us identify and resolve bottlenecks such as single points of failure in our 
 To make our system more resilient we can do the following:
 
 - Running multiple instances of each of our services.
-- Introducing [load balancers](https://www.swifttechco.com) between clients, servers, databases, and cache servers.
+- Introducing load balancers between clients, servers, databases, and cache servers.
 - Using multiple read replicas for our databases.
 - Multiple instances and replicas for our distributed cache.
 - We can have a standby replica of our API Gateway.
-- Exactly once delivery and message ordering is challenging in a distributed system, we can use a dedicated [message broker](https://www.swifttechco.com) such as [Apache Kafka](https://www.swifttechco.com) or [NATS](https://www.swifttechco.com) to make our notification system more robust.
+- Exactly once delivery and message ordering is challenging in a distributed system, we can use a dedicated message broker such as Apache Kafka or NATS to make our notification system more robust.
 - We can add media processing and compression capabilities to the media service to compress large files similar to WhatsApp which will save a lot of storage space and reduce cost.
 - We can create a group service separate from the chat service to further decouple our services.
 
@@ -4521,7 +4430,7 @@ This table maps tweets with users for the favorite tweets functionality in our a
 
 **followers**
 
-This table maps the followers and [followees](https://www.swifttechco.com) as users can follow each other (N:M relationship).
+This table maps the followers and followees as users can follow each other (N:M relationship).
 
 **feeds**
 
@@ -4535,7 +4444,7 @@ This table maps tweets and feed (N:M relationship).
 
 While our data model seems quite relational, we don't necessarily need to store everything in a single database, as this can limit our scalability and quickly become a bottleneck.
 
-We will split the data between different services each having ownership over a particular table. Then we can use a relational database such as [PostgreSQL](https://www.swifttechco.com) or a distributed NoSQL database such as [Apache Cassandra](https://www.swifttechco.com) for our use case.
+We will split the data between different services each having ownership over a particular table. Then we can use a relational database such as PostgreSQL or a distributed NoSQL database such as Apache Cassandra for our use case.
 
 ## API design
 
@@ -4602,7 +4511,7 @@ Now let us do a high-level design of our system.
 
 ### Architecture
 
-We will be using [microservices architecture](https://www.swifttechco.com) since it will make it easier to horizontally scale and decouple our services. Each service will have ownership of its own data model. Let's try to divide our system into some core services.
+We will be using microservices architecture since it will make it easier to horizontally scale and decouple our services. Each service will have ownership of its own data model. Let's try to divide our system into some core services.
 
 **User Service**
 
@@ -4634,11 +4543,11 @@ This service will be used for metrics and analytics use cases.
 
 **What about inter-service communication and service discovery?**
 
-Since our architecture is microservices-based, services will be communicating with each other as well. Generally, REST or HTTP performs well but we can further improve the performance using [gRPC](https://www.swifttechco.com) which is more lightweight and efficient.
+Since our architecture is microservices-based, services will be communicating with each other as well. Generally, REST or HTTP performs well but we can further improve the performance using gRPC which is more lightweight and efficient.
 
-[Service discovery](https://www.swifttechco.com) is another thing we will have to take into account. We can also use a service mesh that enables managed, observable, and secure communication between individual services.
+Service discovery is another thing we will have to take into account. We can also use a service mesh that enables managed, observable, and secure communication between individual services.
 
-_Note: Learn more about [REST, GraphQL, gRPC](https://www.swifttechco.com) and how they compare with each other._
+_Note: Learn more about REST, GraphQL, gRPC and how they compare with each other._
 
 ### Newsfeed
 
@@ -4683,7 +4592,7 @@ The hybrid model allows only users with a lesser number of followers to use the 
 
 As we discussed, we will need a ranking algorithm to rank each tweet according to its relevance to each specific user.
 
-For example, Facebook used to utilize an [EdgeRank](https://www.swifttechco.com) algorithm. Here, the rank of each feed item is described by:
+For example, Facebook used to utilize an EdgeRank algorithm. Here, the rank of each feed item is described by:
 
 $$
 Rank = Affinity \times Weight \times Decay
@@ -4714,9 +4623,9 @@ This is a very basic implementation. To improve this we can create a separate ta
 
 ### Search
 
-Sometimes traditional DBMS are not performant enough, we need something which allows us to store, search, and analyze huge volumes of data quickly and in near real-time and give results within milliseconds. [Elasticsearch](https://www.swifttechco.com) can help us with this use case.
+Sometimes traditional DBMS are not performant enough, we need something which allows us to store, search, and analyze huge volumes of data quickly and in near real-time and give results within milliseconds. Elasticsearch can help us with this use case.
 
-[Elasticsearch](https://www.swifttechco.com) is a distributed, free and open search and analytics engine for all types of data, including textual, numerical, geospatial, structured, and unstructured. It is built on top of [Apache Lucene](https://www.swifttechco.com).
+Elasticsearch is a distributed, free and open search and analytics engine for all types of data, including textual, numerical, geospatial, structured, and unstructured. It is built on top of Apache Lucene.
 
 **How do we identify trending topics?**
 
@@ -4724,9 +4633,9 @@ Trending functionality will be based on top of the search functionality. We can 
 
 ### Notifications
 
-Push notifications are an integral part of any social media platform. We can use a message queue or a message broker such as [Apache Kafka](https://www.swifttechco.com) with the notification service to dispatch requests to [Firebase Cloud Messaging (FCM)](https://www.swifttechco.com) or [Apple Push Notification Service (APNS)](https://www.swifttechco.com) which will handle the delivery of the push notifications to user devices.
+Push notifications are an integral part of any social media platform. We can use a message queue or a message broker such as Apache Kafka with the notification service to dispatch requests to Firebase Cloud Messaging (FCM) or Apple Push Notification Service (APNS) which will handle the delivery of the push notifications to user devices.
 
-_For more details, refer to the [WhatsApp](https://www.swifttechco.com) system design where we discuss push notifications in detail._
+_For more details, refer to the WhatsApp system design where we discuss push notifications in detail._
 
 ## Detailed design
 
@@ -4734,26 +4643,26 @@ It's time to discuss our design decisions in detail.
 
 ### Data Partitioning
 
-To scale out our databases we will need to partition our data. Horizontal partitioning (aka [Sharding](https://www.swifttechco.com)) can be a good first step. We can use partitions schemes such as:
+To scale out our databases we will need to partition our data. Horizontal partitioning (aka Sharding) can be a good first step. We can use partitions schemes such as:
 
 - Hash-Based Partitioning
 - List-Based Partitioning
 - Range Based Partitioning
 - Composite Partitioning
 
-The above approaches can still cause uneven data and load distribution, we can solve this using [Consistent hashing](https://www.swifttechco.com).
+The above approaches can still cause uneven data and load distribution, we can solve this using Consistent hashing.
 
-_For more details, refer to [Sharding](https://www.swifttechco.com) and [Consistent Hashing](https://www.swifttechco.com)._
+_For more details, refer to Sharding and Consistent Hashing._
 
 ### Mutual friends
 
-For mutual friends, we can build a social graph for every user. Each node in the graph will represent a user and a directional edge will represent followers and followees. After that, we can traverse the followers of a user to find and suggest a mutual friend. This would require a graph database such as [Neo4j](https://www.swifttechco.com) or [ArangoDB](https://www.swifttechco.com).
+For mutual friends, we can build a social graph for every user. Each node in the graph will represent a user and a directional edge will represent followers and followees. After that, we can traverse the followers of a user to find and suggest a mutual friend. This would require a graph database such as Neo4j or ArangoDB.
 
 This is a pretty simple algorithm, to improve our suggestion accuracy, we will need to incorporate a recommendation model which uses machine learning as part of our algorithm.
 
 ### Metrics and Analytics
 
-Recording analytics and metrics is one of our extended requirements. As we will be using [Apache Kafka](https://www.swifttechco.com) to publish all sorts of events, we can process these events and run analytics on the data using [Apache Spark](https://www.swifttechco.com) which is an open-source unified analytics engine for large-scale data processing.
+Recording analytics and metrics is one of our extended requirements. As we will be using Apache Kafka to publish all sorts of events, we can process these events and run analytics on the data using Apache Spark which is an open-source unified analytics engine for large-scale data processing.
 
 ### Caching
 
@@ -4763,25 +4672,25 @@ To further improve efficiency we can add pagination to our system APIs. This dec
 
 **Which cache eviction policy to use?**
 
-We can use solutions like [Redis](https://www.swifttechco.com) or [Memcached](https://www.swifttechco.com) and cache 20% of the daily traffic but what kind of cache eviction policy would best fit our needs?
+We can use solutions like Redis or Memcached and cache 20% of the daily traffic but what kind of cache eviction policy would best fit our needs?
 
-[Least Recently Used (LRU)](https://www.swifttechco.com) can be a good policy for our system. In this policy, we discard the least recently used key first.
+Least Recently Used (LRU) can be a good policy for our system. In this policy, we discard the least recently used key first.
 
 **How to handle cache miss?**
 
 Whenever there is a cache miss, our servers can hit the database directly and update the cache with the new entries.
 
-_For more details, refer to [Caching](https://www.swifttechco.com)._
+_For more details, refer to Caching._
 
 ### Media access and storage
 
 As we know, most of our storage space will be used for storing media files such as images, videos, or other files. Our media service will be handling both access and storage of the user media files.
 
-But where can we store files at scale? Well, [object storage](https://www.swifttechco.com) is what we're looking for. Object stores break data files up into pieces called objects. It then stores those objects in a single repository, which can be spread out across multiple networked systems. We can also use distributed file storage such as [HDFS](https://www.swifttechco.com) or [GlusterFS](https://www.swifttechco.com).
+But where can we store files at scale? Well, object storage is what we're looking for. Object stores break data files up into pieces called objects. It then stores those objects in a single repository, which can be spread out across multiple networked systems. We can also use distributed file storage such as HDFS or GlusterFS.
 
 ### Content Delivery Network (CDN)
 
-[Content Delivery Network (CDN)](https://www.swifttechco.com) increases content availability and redundancy while reducing bandwidth costs. Generally, static files such as images, and videos are served from CDN. We can use services like [Amazon CloudFront](https://www.swifttechco.com) or [Cloudflare CDN](https://www.swifttechco.com) for this use case.
+Content Delivery Network (CDN) increases content availability and redundancy while reducing bandwidth costs. Generally, static files such as images, and videos are served from CDN. We can use services like Amazon CloudFront or Cloudflare CDN for this use case.
 
 ## Identify and resolve bottlenecks
 
@@ -4798,15 +4707,15 @@ Let us identify and resolve bottlenecks such as single points of failure in our 
 To make our system more resilient we can do the following:
 
 - Running multiple instances of each of our services.
-- Introducing [load balancers](https://www.swifttechco.com) between clients, servers, databases, and cache servers.
+- Introducing load balancers between clients, servers, databases, and cache servers.
 - Using multiple read replicas for our databases.
 - Multiple instances and replicas for our distributed cache.
-- Exactly once delivery and message ordering is challenging in a distributed system, we can use a dedicated [message broker](https://www.swifttechco.com) such as [Apache Kafka](https://www.swifttechco.com) or [NATS](https://www.swifttechco.com) to make our notification system more robust.
+- Exactly once delivery and message ordering is challenging in a distributed system, we can use a dedicated message broker such as Apache Kafka or NATS to make our notification system more robust.
 - We can add media processing and compression capabilities to the media service to compress large files which will save a lot of storage space and reduce cost.
 
 # Netflix
 
-Let's design a [Netflix](https://www.swifttechco.com) like video streaming service, similar to services like [Amazon Prime Video](https://www.swifttechco.com), [Disney Plus](https://www.swifttechco.com), [Hulu](https://www.swifttechco.com), [Youtube](https://www.swifttechco.com), [Vimeo](https://www.swifttechco.com), etc.
+Let's design a Netflix like video streaming service, similar to services like Amazon Prime Video, Disney Plus, Hulu, Youtube, Vimeo, etc.
 
 ## What is Netflix?
 
@@ -4831,7 +4740,7 @@ Our system should meet the following requirements:
 
 ### Extended requirements
 
-- Certain content should be [geo-blocked](https://www.swifttechco.com).
+- Certain content should be geo-blocked.
 - Resume video playback from the point user left off.
 - Record metrics and analytics of videos.
 
@@ -4929,7 +4838,7 @@ This table stores all the comments received on a video (like YouTube).
 
 While our data model seems quite relational, we don't necessarily need to store everything in a single database, as this can limit our scalability and quickly become a bottleneck.
 
-We will split the data between different services each having ownership over a particular table. Then we can use a relational database such as [PostgreSQL](https://www.swifttechco.com) or a distributed NoSQL database such as [Apache Cassandra](https://www.swifttechco.com) for our use case.
+We will split the data between different services each having ownership over a particular table. Then we can use a relational database such as PostgreSQL or a distributed NoSQL database such as Apache Cassandra for our use case.
 
 ## API design
 
@@ -4969,9 +4878,9 @@ streamVideo(videoID: UUID, codec: Enum<string>, resolution: Tuple<int>, offset?:
 
 Video ID (`UUID`): ID of the video that needs to be streamed.
 
-Codec (`Enum<string>`): Required [codec](https://www.swifttechco.com) of the requested video, such as `h.265`, `h.264`, `VP9`, etc.
+Codec (`Enum<string>`): Required codec of the requested video, such as `h.265`, `h.264`, `VP9`, etc.
 
-Resolution (`Tuple<int>`): [Resolution](https://www.swifttechco.com) of the requested video.
+Resolution (`Tuple<int>`): Resolution of the requested video.
 
 Offset (`int`): Offset of the video stream in seconds to stream data from any point in the video _(optional)_.
 
@@ -5021,7 +4930,7 @@ Now let us do a high-level design of our system.
 
 ### Architecture
 
-We will be using [microservices architecture](https://www.swifttechco.com) since it will make it easier to horizontally scale and decouple our services. Each service will have ownership of its own data model. Let's try to divide our system into some core services.
+We will be using microservices architecture since it will make it easier to horizontally scale and decouple our services. Each service will have ownership of its own data model. Let's try to divide our system into some core services.
 
 **User Service**
 
@@ -5045,11 +4954,11 @@ This service will be used for metrics and analytics use cases.
 
 **What about inter-service communication and service discovery?**
 
-Since our architecture is microservices-based, services will be communicating with each other as well. Generally, REST or HTTP performs well but we can further improve the performance using [gRPC](https://www.swifttechco.com) which is more lightweight and efficient.
+Since our architecture is microservices-based, services will be communicating with each other as well. Generally, REST or HTTP performs well but we can further improve the performance using gRPC which is more lightweight and efficient.
 
-[Service discovery](https://www.swifttechco.com) is another thing we will have to take into account. We can also use a service mesh that enables managed, observable, and secure communication between individual services.
+Service discovery is another thing we will have to take into account. We can also use a service mesh that enables managed, observable, and secure communication between individual services.
 
-_Note: Learn more about [REST, GraphQL, gRPC](https://www.swifttechco.com) and how they compare with each other._
+_Note: Learn more about REST, GraphQL, gRPC and how they compare with each other._
 
 ### Video processing
 
@@ -5057,7 +4966,7 @@ _Note: Learn more about [REST, GraphQL, gRPC](https://www.swifttechco.com) and h
 
 There are so many variables in play when it comes to processing a video. For example, an average data size of two-hour raw 8K footage from a high-end camera can easily be up to 4 TB, thus we need to have some kind of processing to reduce both storage and delivery costs.
 
-Here's how we can process videos once they're uploaded by the content team (or users in YouTube's case) and are queued for processing in our [message queue](https://www.swifttechco.com).
+Here's how we can process videos once they're uploaded by the content team (or users in YouTube's case) and are queued for processing in our message queue.
 
 Let's discuss how this works:
 
@@ -5071,49 +4980,49 @@ Usually, a video file can be split into equal size chunks based on timestamps bu
 
 - **Content Filter**
 
-This step checks if the video adheres to the content policy of the platform. This can be pre-approved as in the case of Netflix according to [content rating](https://www.swifttechco.com) of the media or can be strictly enforced like by YouTube.
+This step checks if the video adheres to the content policy of the platform. This can be pre-approved as in the case of Netflix according to content rating of the media or can be strictly enforced like by YouTube.
 
-This entire process is done by a machine learning model which performs copyright, piracy, and NSFW checks. If issues are found, we can push the task to a [dead-letter queue (DLQ)](https://www.swifttechco.com) and someone from the moderation team can do further inspection.
+This entire process is done by a machine learning model which performs copyright, piracy, and NSFW checks. If issues are found, we can push the task to a dead-letter queue (DLQ) and someone from the moderation team can do further inspection.
 
 - **Transcoder**
 
-[Transcoding](https://www.swifttechco.com) is a process in which the original data is decoded to an intermediate uncompressed format, which is then encoded into the target format. This process uses different [codecs](https://www.swifttechco.com) to perform bitrate adjustment, image downsampling, or re-encoding the media.
+Transcoding is a process in which the original data is decoded to an intermediate uncompressed format, which is then encoded into the target format. This process uses different codecs to perform bitrate adjustment, image downsampling, or re-encoding the media.
 
-This results in a smaller size file and a much more optimized format for the target devices. Standalone solutions such as [FFmpeg](https://www.swifttechco.com) or cloud-based solutions like [AWS Elemental MediaConvert](https://www.swifttechco.com) can be used to implement this step of the pipeline.
+This results in a smaller size file and a much more optimized format for the target devices. Standalone solutions such as FFmpeg or cloud-based solutions like AWS Elemental MediaConvert can be used to implement this step of the pipeline.
 
 - **Quality Conversion**
 
 This is the last step of the processing pipeline and as the name suggests, this step handles the conversion of the transcoded media from the previous step into different resolutions such as 4K, 1440p, 1080p, 720p, etc.
 
-It allows us to fetch the desired quality of the video as per the user's request, and once the media file finishes processing, it gets uploaded to a distributed file storage such as [HDFS](https://www.swifttechco.com), [GlusterFS](https://www.swifttechco.com), or an [object storage](https://www.swifttechco.com) such as [Amazon S3](https://www.swifttechco.com) for later retrieval during streaming.
+It allows us to fetch the desired quality of the video as per the user's request, and once the media file finishes processing, it gets uploaded to a distributed file storage such as HDFS, GlusterFS, or an object storage such as Amazon S3 for later retrieval during streaming.
 
 _Note: We can add additional steps such as subtitles and thumbnails generation as part of our pipeline._
 
 **Why are we using a message queue?**
 
-Processing videos as a long-running task and using a [message queue](https://www.swifttechco.com) makes much more sense. It also decouples our video processing pipeline from the upload functionality. We can use something like [Amazon SQS](https://www.swifttechco.com) or [RabbitMQ](https://www.swifttechco.com) to support this.
+Processing videos as a long-running task and using a message queue makes much more sense. It also decouples our video processing pipeline from the upload functionality. We can use something like Amazon SQS or RabbitMQ to support this.
 
 ### Video streaming
 
-Video streaming is a challenging task from both the client and server perspectives. Moreover, internet connection speeds vary quite a lot between different users. To make sure users don't re-fetch the same content, we can use a [Content Delivery Network (CDN)](https://www.swifttechco.com).
+Video streaming is a challenging task from both the client and server perspectives. Moreover, internet connection speeds vary quite a lot between different users. To make sure users don't re-fetch the same content, we can use a Content Delivery Network (CDN).
 
-Netflix takes this a step further with its [Open Connect](https://www.swifttechco.com) program. In this approach, they partner with thousands of Internet Service Providers (ISPs) to localize their traffic and deliver their content more efficiently.
+Netflix takes this a step further with its Open Connect program. In this approach, they partner with thousands of Internet Service Providers (ISPs) to localize their traffic and deliver their content more efficiently.
 
 **What is the difference between Netflix's Open Connect and a traditional Content Delivery Network (CDN)?**
 
-Netflix Open Connect is a purpose-built [Content Delivery Network (CDN)](https://www.swifttechco.com) responsible for serving Netflix's video traffic. Around 95% of the traffic globally is delivered via direct connections between Open Connect and the ISPs their customers use to access the internet.
+Netflix Open Connect is a purpose-built Content Delivery Network (CDN) responsible for serving Netflix's video traffic. Around 95% of the traffic globally is delivered via direct connections between Open Connect and the ISPs their customers use to access the internet.
 
 Currently, they have Open Connect Appliances (OCAs) in over 1000 separate locations around the world. In case of issues, Open Connect Appliances (OCAs) can failover, and the traffic can be re-routed to Netflix servers.
 
-Additionally, we can use [Adaptive bitrate streaming](https://www.swifttechco.com) protocols such as [HTTP Live Streaming (HLS)](https://www.swifttechco.com) which is designed for reliability and it dynamically adapts to network conditions by optimizing playback for the available speed of the connections.
+Additionally, we can use Adaptive bitrate streaming protocols such as HTTP Live Streaming (HLS) which is designed for reliability and it dynamically adapts to network conditions by optimizing playback for the available speed of the connections.
 
 Lastly, for playing the video from where the user left off (part of our extended requirements), we can simply use the `offset` property we stored in the `views` table to retrieve the scene chunk at that particular timestamp and resume the playback for the user.
 
 ### Searching
 
-Sometimes traditional DBMS are not performant enough, we need something which allows us to store, search, and analyze huge volumes of data quickly and in near real-time and give results within milliseconds. [Elasticsearch](https://www.swifttechco.com) can help us with this use case.
+Sometimes traditional DBMS are not performant enough, we need something which allows us to store, search, and analyze huge volumes of data quickly and in near real-time and give results within milliseconds. Elasticsearch can help us with this use case.
 
-[Elasticsearch](https://www.swifttechco.com) is a distributed, free and open search and analytics engine for all types of data, including textual, numerical, geospatial, structured, and unstructured. It is built on top of [Apache Lucene](https://www.swifttechco.com).
+Elasticsearch is a distributed, free and open search and analytics engine for all types of data, including textual, numerical, geospatial, structured, and unstructured. It is built on top of Apache Lucene.
 
 **How do we identify trending content?**
 
@@ -5123,7 +5032,7 @@ Trending functionality will be based on top of the search functionality. We can 
 
 Sharing content is an important part of any platform, for this, we can have some sort of URL shortener service in place that can generate short URLs for the users to share.
 
-_For more details, refer to the [URL Shortener](https://www.swifttechco.com) system design._
+_For more details, refer to the URL Shortener system design._
 
 ## Detailed design
 
@@ -5131,26 +5040,26 @@ It's time to discuss our design decisions in detail.
 
 ### Data Partitioning
 
-To scale out our databases we will need to partition our data. Horizontal partitioning (aka [Sharding](https://www.swifttechco.com)) can be a good first step. We can use partitions schemes such as:
+To scale out our databases we will need to partition our data. Horizontal partitioning (aka Sharding) can be a good first step. We can use partitions schemes such as:
 
 - Hash-Based Partitioning
 - List-Based Partitioning
 - Range Based Partitioning
 - Composite Partitioning
 
-The above approaches can still cause uneven data and load distribution, we can solve this using [Consistent hashing](https://www.swifttechco.com).
+The above approaches can still cause uneven data and load distribution, we can solve this using Consistent hashing.
 
-_For more details, refer to [Sharding](https://www.swifttechco.com) and [Consistent Hashing](https://www.swifttechco.com)._
+_For more details, refer to Sharding and Consistent Hashing._
 
 ### Geo-blocking
 
-Platforms like Netflix and YouTube use [Geo-blocking](https://www.swifttechco.com) to restrict content in certain geographical areas or countries. This is primarily done due to legal distribution laws that Netflix has to adhere to when they make a deal with the production and distribution companies. In the case of YouTube, this will be controlled by the user during the publishing of the content.
+Platforms like Netflix and YouTube use Geo-blocking to restrict content in certain geographical areas or countries. This is primarily done due to legal distribution laws that Netflix has to adhere to when they make a deal with the production and distribution companies. In the case of YouTube, this will be controlled by the user during the publishing of the content.
 
-We can determine the user's location either using their [IP](https://www.swifttechco.com) or region settings in their profile then use services like [Amazon CloudFront](https://www.swifttechco.com) which supports a geographic restrictions feature or a [geolocation routing policy](https://www.swifttechco.com) with [Amazon Route53](https://www.swifttechco.com) to restrict the content and re-route the user to an error page if the content is not available in that particular region or country.
+We can determine the user's location either using their IP or region settings in their profile then use services like Amazon CloudFront which supports a geographic restrictions feature or a geolocation routing policy with Amazon Route53 to restrict the content and re-route the user to an error page if the content is not available in that particular region or country.
 
 ### Recommendations
 
-Netflix uses a machine learning model which uses the user's viewing history to predict what the user might like to watch next, an algorithm like [Collaborative Filtering](https://www.swifttechco.com) can be used.
+Netflix uses a machine learning model which uses the user's viewing history to predict what the user might like to watch next, an algorithm like Collaborative Filtering can be used.
 
 However, Netflix (like YouTube) uses its own algorithm called Netflix Recommendation Engine which can track several data points such as:
 
@@ -5160,35 +5069,35 @@ However, Netflix (like YouTube) uses its own algorithm called Netflix Recommenda
 - The device which was used to stream the content.
 - The number of searches and what terms were searched.
 
-_For more detail, refer to [Netflix recommendation research](https://www.swifttechco.com)._
+_For more detail, refer to Netflix recommendation research._
 
 ### Metrics and Analytics
 
-Recording analytics and metrics is one of our extended requirements. We can capture the data from different services and run analytics on the data using [Apache Spark](https://www.swifttechco.com) which is an open-source unified analytics engine for large-scale data processing. Additionally, we can store critical metadata in the views table to increase data points within our data.
+Recording analytics and metrics is one of our extended requirements. We can capture the data from different services and run analytics on the data using Apache Spark which is an open-source unified analytics engine for large-scale data processing. Additionally, we can store critical metadata in the views table to increase data points within our data.
 
 ### Caching
 
-In a streaming platform, caching is important. We have to be able to cache as much static media content as possible to improve user experience. We can use solutions like [Redis](https://www.swifttechco.com) or [Memcached](https://www.swifttechco.com) but what kind of cache eviction policy would best fit our needs?
+In a streaming platform, caching is important. We have to be able to cache as much static media content as possible to improve user experience. We can use solutions like Redis or Memcached but what kind of cache eviction policy would best fit our needs?
 
 **Which cache eviction policy to use?**
 
-[Least Recently Used (LRU)](https://www.swifttechco.com) can be a good policy for our system. In this policy, we discard the least recently used key first.
+Least Recently Used (LRU) can be a good policy for our system. In this policy, we discard the least recently used key first.
 
 **How to handle cache miss?**
 
 Whenever there is a cache miss, our servers can hit the database directly and update the cache with the new entries.
 
-_For more details, refer to [Caching](https://www.swifttechco.com)._
+_For more details, refer to Caching._
 
 ### Media streaming and storage
 
 As most of our storage space will be used for storing media files such as thumbnails and videos. Per our discussion earlier, the media service will be handling both the upload and processing of media files.
 
-We will use distributed file storage such as [HDFS](https://www.swifttechco.com), [GlusterFS](https://www.swifttechco.com), or an [object storage](https://www.swifttechco.com) such as [Amazon S3](https://www.swifttechco.com) for storage and streaming of the content.
+We will use distributed file storage such as HDFS, GlusterFS, or an object storage such as Amazon S3 for storage and streaming of the content.
 
 ### Content Delivery Network (CDN)
 
-[Content Delivery Network (CDN)](https://www.swifttechco.com) increases content availability and redundancy while reducing bandwidth costs. Generally, static files such as images, and videos are served from CDN. We can use services like [Amazon CloudFront](https://www.swifttechco.com) or [Cloudflare CDN](https://www.swifttechco.com) for this use case.
+Content Delivery Network (CDN) increases content availability and redundancy while reducing bandwidth costs. Generally, static files such as images, and videos are served from CDN. We can use services like Amazon CloudFront or Cloudflare CDN for this use case.
 
 ## Identify and resolve bottlenecks
 
@@ -5204,13 +5113,13 @@ Let us identify and resolve bottlenecks such as single points of failure in our 
 To make our system more resilient we can do the following:
 
 - Running multiple instances of each of our services.
-- Introducing [load balancers](https://www.swifttechco.com) between clients, servers, databases, and cache servers.
+- Introducing load balancers between clients, servers, databases, and cache servers.
 - Using multiple read replicas for our databases.
 - Multiple instances and replicas for our distributed cache.
 
 # Uber
 
-Let's design an [Uber](https://www.swifttechco.com) like ride-hailing service, similar to services like [Lyft](https://www.swifttechco.com), [OLA Cabs](https://www.swifttechco.com), etc.
+Let's design an Uber like ride-hailing service, similar to services like Lyft, OLA Cabs, etc.
 
 ## What is Uber?
 
@@ -5342,7 +5251,7 @@ The payments table contains the payment-related data with the corresponding `tri
 
 While our data model seems quite relational, we don't necessarily need to store everything in a single database, as this can limit our scalability and quickly become a bottleneck.
 
-We will split the data between different services each having ownership over a particular table. Then we can use a relational database such as [PostgreSQL](https://www.swifttechco.com) or a distributed NoSQL database such as [Apache Cassandra](https://www.swifttechco.com) for our use case.
+We will split the data between different services each having ownership over a particular table. Then we can use a relational database such as PostgreSQL or a distributed NoSQL database such as Apache Cassandra for our use case.
 
 ## API design
 
@@ -5452,7 +5361,7 @@ Now let us do a high-level design of our system.
 
 ### Architecture
 
-We will be using [microservices architecture](https://www.swifttechco.com) since it will make it easier to horizontally scale and decouple our services. Each service will have ownership of its own data model. Let's try to divide our system into some core services.
+We will be using microservices architecture since it will make it easier to horizontally scale and decouple our services. Each service will have ownership of its own data model. Let's try to divide our system into some core services.
 
 **Customer Service**
 
@@ -5484,11 +5393,11 @@ This service will be used for metrics and analytics use cases.
 
 **What about inter-service communication and service discovery?**
 
-Since our architecture is microservices-based, services will be communicating with each other as well. Generally, REST or HTTP performs well but we can further improve the performance using [gRPC](https://www.swifttechco.com) which is more lightweight and efficient.
+Since our architecture is microservices-based, services will be communicating with each other as well. Generally, REST or HTTP performs well but we can further improve the performance using gRPC which is more lightweight and efficient.
 
-[Service discovery](https://www.swifttechco.com) is another thing we will have to take into account. We can also use a service mesh that enables managed, observable, and secure communication between individual services.
+Service discovery is another thing we will have to take into account. We can also use a service mesh that enables managed, observable, and secure communication between individual services.
 
-_Note: Learn more about [REST, GraphQL, gRPC](https://www.swifttechco.com) and how they compare with each other._
+_Note: Learn more about REST, GraphQL, gRPC and how they compare with each other._
 
 ### How is the service expected to work?
 
@@ -5510,17 +5419,17 @@ How do we efficiently send and receive live location data from the client (custo
 
 **Pull model**
 
-The client can periodically send an HTTP request to servers to report its current location and receive ETA and pricing information. This can be achieved via something like [Long polling](https://www.swifttechco.com).
+The client can periodically send an HTTP request to servers to report its current location and receive ETA and pricing information. This can be achieved via something like Long polling.
 
 **Push model**
 
-The client opens a long-lived connection with the server and once new data is available it will be pushed to the client. We can use [WebSockets](https://www.swifttechco.com) or [Server-Sent Events (SSE)](https://www.swifttechco.com) for this.
+The client opens a long-lived connection with the server and once new data is available it will be pushed to the client. We can use WebSockets or Server-Sent Events (SSE) for this.
 
-The pull model approach is not scalable as it will create unnecessary request overhead on our servers and most of the time the response will be empty, thus wasting our resources. To minimize latency, using the push model with [WebSockets](https://www.swifttechco.com) is a better choice because then we can push data to the client once it's available without any delay, given that the connection is open with the client. Also, WebSockets provide full-duplex communication, unlike [Server-Sent Events (SSE)](https://www.swifttechco.com) which are only unidirectional.
+The pull model approach is not scalable as it will create unnecessary request overhead on our servers and most of the time the response will be empty, thus wasting our resources. To minimize latency, using the push model with WebSockets is a better choice because then we can push data to the client once it's available without any delay, given that the connection is open with the client. Also, WebSockets provide full-duplex communication, unlike Server-Sent Events (SSE) which are only unidirectional.
 
 Additionally, the client application should have some sort of background job mechanism to ping GPS location while the application is in the background.
 
-_Note: Learn more about [Long polling, WebSockets, Server-Sent Events (SSE)](https://www.swifttechco.com)._
+_Note: Learn more about Long polling, WebSockets, Server-Sent Events (SSE)._
 
 ### Ride Matching
 
@@ -5528,7 +5437,7 @@ We need a way to efficiently store and query nearby drivers. Let's explore diffe
 
 **SQL**
 
-We already have access to the latitude and longitude of our customers, and with databases like [PostgreSQL](https://www.swifttechco.com) and [MySQL](https://www.swifttechco.com) we can perform a query to find nearby driver locations given a latitude and longitude (X, Y) within a radius (R).
+We already have access to the latitude and longitude of our customers, and with databases like PostgreSQL and MySQL we can perform a query to find nearby driver locations given a latitude and longitude (X, Y) within a radius (R).
 
 ```sql
 SELECT * FROM locations WHERE lat BETWEEN X-R AND X+R AND long BETWEEN Y-R AND Y+R
@@ -5549,7 +5458,7 @@ Now, using the customer's geohash we can determine the nearest available driver 
 
 **Quadtrees**
 
-A [Quadtree](https://www.swifttechco.com) is a tree data structure in which each internal node has exactly four children. They are often used to partition a two-dimensional space by recursively subdividing it into four quadrants or regions. Each child or leaf node stores spatial information. Quadtrees are the two-dimensional analog of [Octrees](https://www.swifttechco.com) which are used to partition three-dimensional space.
+A Quadtree is a tree data structure in which each internal node has exactly four children. They are often used to partition a two-dimensional space by recursively subdividing it into four quadrants or regions. Each child or leaf node stores spatial information. Quadtrees are the two-dimensional analog of Octrees which are used to partition three-dimensional space.
 
 [![quadtree](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-IV/geohashing-and-quadtrees/quadtree.png)](https://www.swifttechco.com)
 
@@ -5559,13 +5468,13 @@ We can save further computation by only subdividing a node after a certain thres
 
 [![quadtree-subdivision](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-IV/geohashing-and-quadtrees/quadtree-subdivision.png)](https://www.swifttechco.com)
 
-[Quadtree](https://www.swifttechco.com) seems perfect for our use case, we can update the Quadtree every time we receive a new location update from the driver. To reduce the load on the quadtree servers we can use an in-memory datastore such as [Redis](https://www.swifttechco.com) to cache the latest updates. And with the application of mapping algorithms such as the [Hilbert curve](https://www.swifttechco.com), we can perform efficient range queries to find nearby drivers for the customer.
+Quadtree seems perfect for our use case, we can update the Quadtree every time we receive a new location update from the driver. To reduce the load on the quadtree servers we can use an in-memory datastore such as Redis to cache the latest updates. And with the application of mapping algorithms such as the Hilbert curve, we can perform efficient range queries to find nearby drivers for the customer.
 
 **What about race conditions?**
 
-Race conditions can easily occur when a large number of customers will be requesting rides simultaneously. To avoid this, we can wrap our ride matching logic in a [Mutex](https://www.swifttechco.com) to avoid any race conditions. Furthermore, every action should be transactional in nature.
+Race conditions can easily occur when a large number of customers will be requesting rides simultaneously. To avoid this, we can wrap our ride matching logic in a Mutex to avoid any race conditions. Furthermore, every action should be transactional in nature.
 
-_For more details, refer to [Transactions](https://www.swifttechco.com) and [Distributed Transactions](https://www.swifttechco.com)._
+_For more details, refer to Transactions and Distributed Transactions._
 
 **How to find the best drivers nearby?**
 
@@ -5575,16 +5484,16 @@ Once we have a list of nearby drivers from the Quadtree servers, we can perform 
 
 In cases of high demand, we can use the concept of Surge Pricing. Surge pricing is a dynamic pricing method where prices are temporarily increased as a reaction to increased demand and mostly limited supply. This surge price can be added to the base price of the trip.
 
-_For more details, learn how [surge pricing works](https://www.swifttechco.com) with Uber._
+_For more details, learn how surge pricing works with Uber._
 
 ### Payments
 
 
 ### Notifications
 
-Push notifications will be an integral part of our platform. We can use a message queue or a message broker such as [Apache Kafka](https://www.swifttechco.com) with the notification service to dispatch requests to [Firebase Cloud Messaging (FCM)](https://www.swifttechco.com) or [Apple Push Notification Service (APNS)](https://www.swifttechco.com) which will handle the delivery of the push notifications to user devices.
+Push notifications will be an integral part of our platform. We can use a message queue or a message broker such as Apache Kafka with the notification service to dispatch requests to Firebase Cloud Messaging (FCM) or Apple Push Notification Service (APNS) which will handle the delivery of the push notifications to user devices.
 
-_For more details, refer to the [WhatsApp](https://www.swifttechco.com) system design where we discuss push notifications in detail._
+_For more details, refer to the WhatsApp system design where we discuss push notifications in detail._
 
 ## Detailed design
 
@@ -5592,27 +5501,27 @@ It's time to discuss our design decisions in detail.
 
 ### Data Partitioning
 
-To scale out our databases we will need to partition our data. Horizontal partitioning (aka [Sharding](https://www.swifttechco.com)) can be a good first step. We can shard our database either based on existing [partition schemes](https://www.swifttechco.com) or regions. If we divide the locations into regions using let's say zip codes, we can effectively store all the data in a given region on a fixed node. But this can still cause uneven data and load distribution, we can solve this using [Consistent hashing](https://www.swifttechco.com).
+To scale out our databases we will need to partition our data. Horizontal partitioning (aka Sharding) can be a good first step. We can shard our database either based on existing partition schemes or regions. If we divide the locations into regions using let's say zip codes, we can effectively store all the data in a given region on a fixed node. But this can still cause uneven data and load distribution, we can solve this using Consistent hashing.
 
-_For more details, refer to [Sharding](https://www.swifttechco.com) and [Consistent Hashing](https://www.swifttechco.com)._
+_For more details, refer to Sharding and Consistent Hashing._
 
 ### Metrics and Analytics
 
-Recording analytics and metrics is one of our extended requirements. We can capture the data from different services and run analytics on the data using [Apache Spark](https://www.swifttechco.com) which is an open-source unified analytics engine for large-scale data processing. Additionally, we can store critical metadata in the views table to increase data points within our data.
+Recording analytics and metrics is one of our extended requirements. We can capture the data from different services and run analytics on the data using Apache Spark which is an open-source unified analytics engine for large-scale data processing. Additionally, we can store critical metadata in the views table to increase data points within our data.
 
 ### Caching
 
-In a location services-based platform, caching is important. We have to be able to cache the recent locations of the customers and drivers for fast retrieval. We can use solutions like [Redis](https://www.swifttechco.com) or [Memcached](https://www.swifttechco.com) but what kind of cache eviction policy would best fit our needs?
+In a location services-based platform, caching is important. We have to be able to cache the recent locations of the customers and drivers for fast retrieval. We can use solutions like Redis or Memcached but what kind of cache eviction policy would best fit our needs?
 
 **Which cache eviction policy to use?**
 
-[Least Recently Used (LRU)](https://www.swifttechco.com) can be a good policy for our system. In this policy, we discard the least recently used key first.
+Least Recently Used (LRU) can be a good policy for our system. In this policy, we discard the least recently used key first.
 
 **How to handle cache miss?**
 
 Whenever there is a cache miss, our servers can hit the database directly and update the cache with the new entries.
 
-_For more details, refer to [Caching](https://www.swifttechco.com)._
+_For more details, refer to Caching._
 
 ## Identify and resolve bottlenecks
 
@@ -5629,10 +5538,10 @@ Let us identify and resolve bottlenecks such as single points of failure in our 
 To make our system more resilient we can do the following:
 
 - Running multiple instances of each of our services.
-- Introducing [load balancers](https://www.swifttechco.com) between clients, servers, databases, and cache servers.
+- Introducing load balancers between clients, servers, databases, and cache servers.
 - Using multiple read replicas for our databases.
 - Multiple instances and replicas for our distributed cache.
-- Exactly once delivery and message ordering is challenging in a distributed system, we can use a dedicated [message broker](https://www.swifttechco.com) such as [Apache Kafka](https://www.swifttechco.com) or [NATS](https://www.swifttechco.com) to make our notification system more robust.
+- Exactly once delivery and message ordering is challenging in a distributed system, we can use a dedicated message broker such as Apache Kafka or NATS to make our notification system more robust.
 
 # Next Steps
 
@@ -5640,24 +5549,24 @@ Congratulations, you've finished the course!
 
 Now that you know the fundamentals of System Design, here are some additional resources:
 
-- [Distributed Systems](https://www.swifttechco.com) (by Dr. Martin Kleppmann)
-- [System Design Interview: An Insider's Guide](https://www.swifttechco.com)
-- [Microservices](https://www.swifttechco.com) (by Chris Richardson)
-- [Serverless computing](https://www.swifttechco.com)
-- [Kubernetes](https://www.swifttechco.com)
+- Distributed Systems (by Dr. Martin Kleppmann)
+- System Design Interview: An Insider's Guide
+- Microservices (by Chris Richardson)
+- Serverless computing
+- Kubernetes
 
 It is also recommended to actively follow engineering blogs of companies putting what we learned in the course into practice at scale:
 
-- [Microsoft Engineering](https://www.swifttechco.com)
-- [Google Research Blog](https://www.swifttechco.com)
-- [Netflix Tech Blog](https://www.swifttechco.com)
-- [AWS Blog](https://www.swifttechco.com)
-- [Facebook Engineering](https://www.swifttechco.com)
-- [Uber Engineering Blog](https://www.swifttechco.com)
-- [Airbnb Engineering](https://www.swifttechco.com)
-- [GitHub Engineering Blog](https://www.swifttechco.com)
-- [Intel Software Blog](https://www.swifttechco.com)
-- [LinkedIn Engineering](https://www.swifttechco.com)
+- Microsoft Engineering
+- Google Research Blog
+- Netflix Tech Blog
+- AWS Blog
+- Facebook Engineering
+- Uber Engineering Blog
+- Airbnb Engineering
+- GitHub Engineering Blog
+- Intel Software Blog
+- LinkedIn Engineering
 
 Last but not least, volunteer for new projects at your company, and learn from senior engineers and architects to further improve your system design skills.
 
@@ -5669,20 +5578,20 @@ Wishing you all the best for further learning!
 
 Here are the resources that were referenced while creating this course.
 
-- [Cloudflare learning center](https://www.swifttechco.com)
-- [IBM Blogs](https://www.swifttechco.com)
-- [Fastly Blogs](https://www.swifttechco.com)
-- [NS1 Blogs](https://www.swifttechco.com)
-- [Grokking the System Design Interview](https://www.swifttechco.com)
-- [Grokking Microservices Design Patterns](https://www.swifttechco.com)
-- [System Design Primer](https://www.swifttechco.com)
-- [AWS Blogs](https://www.swifttechco.com)
-- [Architecture Patterns by Microsoft](https://www.swifttechco.com)
-- [Martin Fowler](https://www.swifttechco.com)
-- [PagerDuty resources](https://www.swifttechco.com)
-- [VMWare Blogs](https://www.swifttechco.com)
+- Cloudflare learning center
+- IBM Blogs
+- Fastly Blogs
+- NS1 Blogs
+- Grokking the System Design Interview
+- Grokking Microservices Design Patterns
+- System Design Primer
+- AWS Blogs
+- Architecture Patterns by Microsoft
+- Martin Fowler
+- PagerDuty resources
+- VMWare Blogs
 
-_All the diagrams were made using [Excalidraw](https://www.swifttechco.com) and are available [here](https://www.swifttechco.com)._
+_All the diagrams were made using Excalidraw and are available here._
 
 ---
 
@@ -5694,14 +5603,22 @@ AI Automation | FinTech Platforms | Custom Software and Mobile Apps | SaaS Platf
 
 **Join our community on Telegram:** [t.me/+Qt_eFvkb2rliMzNh](https://t.me/+Qt_eFvkb2rliMzNh)
 
-[Home](https://www.swifttechco.com) | [Services](https://www.swifttechco.com/services) | [Careers](https://www.swifttechco.com/careers) | [Referral Program](https://www.swifttechco.com/referral) | [Influencers](https://www.swifttechco.com/influencers) | [About](https://www.swifttechco.com/about) | [Contact](https://www.swifttechco.com/contact)
+Home | Services | Careers | Referral Program | Influencers | About | Contact
 
 **Connect**
 
-- Website: [swifttechco.com](https://www.swifttechco.com)
+- Website: swifttechco.com
 - LinkedIn: [linkedin.com/in/stephenoladoke](https://www.linkedin.com/in/stephenoladoke/)
 - LinkedIn (Company): [linkedin.com/company/swift-tech-co](https://www.linkedin.com/company/swift-tech-co)
 - X: [@MrOladoke](https://x.com/MrOladoke)
 - Instagram: [@mr.oladoke](https://www.instagram.com/mr.oladoke/)
 - Instagram (Company): [@swifttechco](https://www.instagram.com/swifttechco/)
 - Organization: [github.com/Swift-Tech-Co](https://github.com/Swift-Tech-Co)
+
+## Sources
+
+Compiled and maintained from upstream [karanpratapsingh/system-design](https://github.com/karanpratapsingh/system-design) under permissive open-source license.
+
+---
+
+Maintained by [Swift Tech Co.](https://github.com/Swift-Tech-Co) - [Telegram](https://t.me/+Qt_eFvkb2rliMzNh)
