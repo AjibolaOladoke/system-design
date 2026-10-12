@@ -5628,3 +5628,11 @@ Compiled and maintained from upstream [karanpratapsingh/system-design](https://g
 ---
 
 Maintained by [Swift Tech Co.](https://github.com/Swift-Tech-Co) - [Telegram](https://t.me/+Qt_eFvkb2rliMzNh)
+
+## Sources
+
+Compiled and maintained from upstream [karanpratapsingh/system-design](https://github.com/karanpratapsingh/system-design) under permissive open-source license.
+
+---
+
+Maintained by [Swift Tech Co.](https://github.com/Swift-Tech-Co) - [Telegram](https://t.me/+Qt_eFvkb2rliMzNh)
